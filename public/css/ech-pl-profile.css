@@ -1,0 +1,185 @@
+.all_single_dr_wrap {
+    max-width: 1440px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 20px;
+    margin-top: 190px;
+    margin-bottom: 70px;
+}
+
+
+
+.sp_breadcrumb {
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+.sp_breadcrumb div,
+.sp_breadcrumb div a {
+    line-height: 1.2em;
+    letter-spacing: 0px;
+    font-weight: 400;
+    font-family: "Optima-Regular", Sans-serif;
+    font-size: 15px;
+    color: #000;
+}
+
+.ECHDr_back_to_medical_list {
+    text-align: right;
+}
+
+.ECHDr_back_to_medical_list a {
+    font-size: 15px;
+    line-height: 1.2em;
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+}
+
+.ECHDr_back_to_medical_list a::before {
+    content: '\f053';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+
+.single_dr_container {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+
+.profile_container {
+    width: 30%;
+}
+
+
+.info_container {
+    width: 70%;
+    padding-left: 20px;
+}
+
+
+.sub_title {
+    font-family: "FuturaPT-Book", Sans-serif !important;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 1.2em;
+}
+
+
+.profile_container img {
+    width: 100%;
+}
+
+
+
+.profile_container .dr_booking a {
+    max-width: 200px;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    font-family: "FuturaPT-Book", Sans-serif !important;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 35px;
+    color: #000;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile_container .dr_booking a:hover {
+    background-color: #192744;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.info_container .dr_name {
+    font-size: 35px !important;
+    font-family: "FuturaPT-Book", Sans-serif !important;
+    font-weight: 400;
+    line-height: 1.2em;
+}
+
+
+.lang_container {
+    margin-top: 30px;
+    line-height: 1.2em;
+}
+
+
+.edu_container {
+    margin-top: 30px;
+}
+
+
+
+.clinics_container {
+    margin-top: 30px;
+}
+
+.single_clinic {
+    margin-top: 20px;
+}
+
+.single_clinic .clinic_name {
+    font-weight: 600;
+}
+
+
+
+@media (max-width: 1024px) {
+    .all_single_dr_wrap {
+        max-width: 1064px;
+        /* add 20 paddings on both sides */
+    }
+
+
+    .info_container .dr_name {
+        font-size: 28px !important;
+    }
+
+
+    .sub_title {
+        font-size: 20px;
+    }
+
+}
+
+/* w1024 */
+
+
+
+
+
+@media(max-width: 767px) {
+    .all_single_dr_wrap {
+        max-width: 807;
+        /* add 20 paddings on both sides */
+    }
+
+    .single_dr_container {
+        flex-wrap: wrap;
+    }
+
+    .profile_container {
+        width: 100%;
+    }
+
+
+    .info_container {
+        width: 100%;
+        padding-left: 0px;
+        margin-top: 50px;
+    }
+
+
+}
+
+/* w767 */

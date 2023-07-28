@@ -1,0 +1,59 @@
+.ech_dr_sp_list_all_wrap {
+    max-width: 1440px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 190px;
+    padding: 0px 10px;
+    position: relative;
+}
+
+.sp_breadcrumb {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.sp_breadcrumb div, .sp_breadcrumb div a {
+    line-height: 1.2em;
+    letter-spacing: 0px;
+    font-weight: 400;
+    font-family: "Optima-Regular", Sans-serif;
+    font-size: 15px;
+    color: #000;
+}
+
+
+.ECHDr_search_title {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.ECHDr_search_title p {
+    font-family: "FuturaPT-Light", Sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 1.3em;
+    color: #02457a;
+    margin-bottom: 0px;
+}
+
+.ECHDr_back_to_medical_list {
+    text-align: right;
+}
+.ECHDr_back_to_medical_list a {
+    font-size: 15px;
+    line-height: 1.2em;
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+}
+.ECHDr_back_to_medical_list a::before {
+    content: '\f053';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+
+@media(max-width: 767px) {
+    .ECHDr_search_title p {
+        font-size: 23px; 
+    }
+} /* w767 */

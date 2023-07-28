@@ -1,0 +1,423 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+
+
+
+
+/************************** HEADER **************************/
+div[data-elementor-type='header'] > .elementor-section {
+    background-color: #192744!important;
+}
+/************************** (END)HEADER **************************/
+ 
+.ech_dr_big_wrap {
+    width: 100%;    
+}
+
+.echdr_page_anchor {
+    position: absolute;
+    top: -190px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container {
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 50px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container div {
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: top;
+}
+.ech_dr_big_wrap .ech_dr_filter_container div:last-child {
+    margin-right: 0px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container {
+    max-width: 270px;
+    width: 100%;
+}
+.ech_dr_big_wrap .echdr_filter_dropdown_checkbox {
+    height: 45px;
+}
+.ech_dr_big_wrap .echdr_filter_dropdown_checkbox .anchor {
+    line-height: 38px;
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+.ech_dr_big_wrap .echdr_filter_dropdown_checkbox .echdr_dropdown_checkbox_item {
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container select {
+    height: 45px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container select,
+.ech_dr_big_wrap .ech_dr_filter_container select option {
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+.ech_dr_big_wrap .dr_filter_btn_container {
+    max-width: 150px;
+    width: 100%;
+}
+.ech_dr_big_wrap .ech_dr_filter_container div.dr_filter_btn {
+    border: 1px solid #000;
+    width: 100%;
+    height: 45px;
+    text-align: center;
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    color: #000;
+    line-height: 45px;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 15px;
+}
+.ech_dr_big_wrap .ech_dr_filter_container div.dr_filter_btn:hover {
+    background-color: #02457a;
+    color: #fff;
+}
+
+
+
+.all_drs_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.all_drs_container .single_dr_card {
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 70px;
+}
+
+.single_dr_card img {
+    width: 100%;
+    height: 320px !important;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.single_dr_card .dr_name,
+.single_dr_card .dr_name a {
+    font-size: 23px ;
+    line-height: 1.3em ;
+    letter-spacing: 1.3px ;
+    font-weight: 400 ;
+    font-family: "Optima-Regular",Sans-serif;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.single_dr_card .specialty,
+.single_dr_card .specialty a {
+    margin-top: 5px;
+    font-size: 15px;
+    line-height: 1.2em;
+    color: #666;
+    font-family: "FuturaPT-Book",Sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+
+@media(max-width: 1230px) {
+    .single_dr_card img {
+        height: 320px !important;
+    }
+} /* w1230 */
+
+@media(max-width: 1024px) {
+    .ech_dr_big_wrap .ech_dr_filter_container .D_categories_filter_container {
+        display: none;
+    }
+    .ech_dr_big_wrap .ech_dr_filter_container .M_categories_filter_container {
+        display: inline-block;
+    }
+
+    .ech_dr_big_wrap .ech_dr_filter_container select,
+    .ech_dr_big_wrap .echdr_filter_dropdown_checkbox {
+        height: 45px;
+    }
+
+    .ech_dr_big_wrap .ech_dr_filter_container div.dr_filter_btn {
+        margin-top: 0px !important; 
+    }
+    
+    .single_dr_card img {
+        height: 240px !important;
+    }
+} /* w1024 */
+
+
+@media(max-width: 876px) {
+    .all_drs_container .single_dr_card {
+        width: 33%; 
+    }
+} /* w876 */
+
+
+@media(max-width: 768px) {
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container {
+        max-width: 200px;
+        width: 100%;
+    }
+
+    .ech_dr_big_wrap .dr_filter_btn_container {
+        max-width: 100px;
+    }
+}
+
+
+@media(max-width: 752px) {
+    .ech_dr_filter_container {
+        justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ech_dr_filter_container > div:first-child {
+        margin-right: 5px !important;
+    }
+
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_drType_container,
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container
+     {
+        max-width: 49%;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
+        max-width: 99%;
+        width: 100%;
+    }
+
+    
+    .ech_dr_filter_container .filter_spec_container {
+        margin-right: 0px !important;
+    }
+
+    /* .ech_dr_filter_container .filter_regions_container,
+    .ech_dr_filter_container .filter_spec_container {
+        max-width: 49% !important;
+    } */
+
+    .ech_dr_big_wrap .ech_dr_filter_container select {
+        width: 100%; 
+    }
+
+
+    .ech_dr_big_wrap .dr_filter_btn_container {
+        max-width: 100%;
+    }
+    .ech_dr_big_wrap .ech_dr_filter_container div.dr_filter_btn {
+        margin-top: 10px !important; 
+        width: 100%; 
+    }
+} /* w752 */
+
+
+
+@media(max-width: 650px) {
+    .all_drs_container .single_dr_card {
+        width: 46%; 
+    }
+
+    .single_dr_card .specialty,
+    .single_dr_card .specialty a {
+        font-size: 13px;
+    }
+    
+} /* w650 */
+
+
+@media(max-width: 638px) {
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_drType_container, 
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container {
+        max-width: 48%;
+    }
+} /* w638 */
+
+
+
+@media(max-width: 520px) {
+    .ech_dr_big_wrap .echdr_filter_dropdown_checkbox .echdr_dropdown_checkbox_item {
+        font-size: 13px; 
+    }
+    
+    .all_drs_container .single_dr_card {
+        width: 50%;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px 5px;
+    }
+
+    .single_dr_card .dr_name, .single_dr_card .dr_name a {
+        font-size: 17px;
+    }
+
+    .single_dr_card img {
+        height: 190px !important;
+    }
+} /* w520 */
+
+
+/******* PAGINATION ********/
+
+.ech_dr_container .ech_dr_pagination {
+    width: 100%;
+    text-align: right;
+}
+
+
+.ech_dr_pagination  ul {
+    list-style: none;
+}
+
+.ech_dr_pagination  ul li {
+    display: inline-block;
+    padding: 0px 7px;
+}
+
+.ech_dr_pagination  ul li,
+.ech_dr_pagination  ul li a {
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.2em;
+    color: #666;
+    text-decoration: none;
+}
+
+.ech_dr_pagination  ul li a:hover,
+.ech_dr_pagination  ul li.active {
+    color: #02457a;
+    text-decoration: underline;
+}
+
+/******* (END) PAGINATION ********/
+
+
+
+
+/************** LOADING ************/
+
+.ech_dr_container .loading_div {
+    width: 100%;
+    height: 380px;
+    display: none;
+}
+
+.ech_dr_container .loading_div p {
+    margin-bottom: 0px;
+    font-family: "FuturaPT-Book", Sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.2em;
+    color: #666;
+}
+
+
+
+@media(max-width: 600px) {
+    .ech_dr_container .loading_div p {
+        font-size: 18px;
+    }
+} /* w600 */
+/************** (END)LOADING ************/
+
+
+
+
+/*** checkbox dropdown list ***/
+
+
+.echdr_filter_dropdown_checkbox {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    user-select: none;
+    border: 1px solid #eaeaea;
+    border-radius: 2px;
+    background: #fafafa;
+    padding: .2em .75em;
+    font-family: "FuturaPT-Book",Sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+/* Display CSS arrow to the right of the dropdown text */
+.echdr_filter_dropdown_checkbox:after {
+    content:'';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 6px solid transparent;
+    border-top-color: #000;
+    top: 50%;
+    right: 10px;
+    margin-top: -3px;
+}
+
+/* Reverse the CSS arrow when the dropdown is active */
+.echdr_filter_dropdown_checkbox.echdr_ddc_is_active:after {
+    border-bottom-color: #000;
+    border-top-color: #fff;
+    margin-top: -9px;
+}
+
+.echdr_dropdown_checkbox_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%; /* align the dropdown right below the dropdown text */
+    border: inherit;
+    border-top: none;
+    left: -1px; /* align the dropdown to the left */
+    right: -1px; /* align the dropdown to the right */
+    opacity: 0; /* hide the dropdown */
+    background: #fff;
+    transition: opacity 0.4s ease-in-out;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    pointer-events: none; /* avoid mouse click events inside the dropdown */
+    z-index: 10;
+}
+.echdr_ddc_is_active .echdr_dropdown_checkbox_list {
+    opacity: 1; /* display the dropdown */
+    pointer-events: auto; /* make sure that the user still can select checkboxes */
+}
+
+.echdr_dropdown_checkbox_list li label {
+    display: block;
+    border-bottom: 1px solid silver;
+    padding: 10px;
+   
+    transition: all 0.2s ease-out;
+}
+
+.echdr_dropdown_checkbox_list li label:hover {
+    background-color: #fafafa;
+    color: #727171;
+}
+

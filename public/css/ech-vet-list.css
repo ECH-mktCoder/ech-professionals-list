@@ -7,46 +7,162 @@
 
 
 /************** SEARCH ************/
-.ech_dr_filter_container {
-    display: flex;
+
+.ech_dr_big_wrap .ech_dr_filter_container {
+    width: 100%;
+    padding: 0px 10px;
+    margin-bottom: 50px;
 }
-.filter_spec_container {
-    width: 20%;
-    font-weight: bold;
+
+.ech_dr_big_wrap .ech_dr_filter_container div {
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: top;
 }
-.ech_dr_filter_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container,
+.ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
+    max-width: 270px;
+    width: 100%;
 }
-select.filter_spec {
+.ech_dr_big_wrap .echdr_filter_dropdown_checkbox {
+    height: 45px;
+}
+
+.ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
+    height: 45px;
+}
+.ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container select {
     border: #242f62 1px solid;
     color: #242f62;
     text-align: center;
     border-radius: 40px;
-    background: #fff;
+    background: #fafafa;    
+    height: 45px;
+    padding: 0!important;
 }
 
-.dr_filter_btn {
-    margin-left: 20px;
+.ech_dr_big_wrap .ech_dr_filter_container .dr_filter_btn {
     border: 1px solid #242f62;
-    padding: 5px 20px;
+    padding: 0px 20px;
     border-radius: 30px;
     cursor: pointer;
 	background: #242f62;
     color: #fff;
+    height: 45px;
+    line-height: 45px;
 }
-.dr_filter_btn:hover {
+
+.ech_dr_big_wrap .ech_dr_filter_container  .dr_filter_btn:hover {
     background: #fff;
     color: #242f62;
 }
 
-@media(max-width: 991px) {
-.filter_spec_container {
-    width: 40%;
-    font-weight: bold;
+@media(max-width: 600px) {
+    .ech_dr_big_wrap .ech_dr_filter_container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ech_dr_big_wrap .ech_dr_filter_container div:first-child {
+        margin-right: 0px;
+    }
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container,
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
+        max-width: 48%;
+    }
+
+    .ech_dr_big_wrap .ech_dr_filter_container .dr_filter_btn_container {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .ech_dr_big_wrap .ech_dr_filter_container .dr_filter_btn {
+        width: 100%;
+    }
+} /* w600 */
+
+
+
+
+
+/*** checkbox dropdown list ***/
+.echdr_filter_dropdown_checkbox {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    user-select: none;
+    border: 1px solid #242f62;
+    border-radius: 40px;
+    background: #fafafa;
+    font-family: "FuturaPT-Book",Sans-serif;
+    line-height: 45px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 17px;
 }
+
+/* Display CSS arrow to the right of the dropdown text */
+.echdr_filter_dropdown_checkbox:after {
+    content:'';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 6px solid transparent;
+    border-top-color: #000;
+    top: 50%;
+    right: 10px;
+    margin-top: -3px;
 }
+
+/* Reverse the CSS arrow when the dropdown is active */
+.echdr_filter_dropdown_checkbox.echdr_ddc_is_active:after {
+    border-bottom-color: #000;
+    border-top-color: #fff;
+    margin-top: -9px;
+}
+
+.echdr_dropdown_checkbox_list {
+    list-style: none;
+    margin: 0!important;
+    padding: 0!important;
+    text-align: left;
+    position: absolute;
+    top: 100%; /* align the dropdown right below the dropdown text */
+    border: inherit;
+    border-top: none;
+    left: -1px; /* align the dropdown to the left */
+    right: -1px; /* align the dropdown to the right */
+    opacity: 0; /* hide the dropdown */
+    background: #fff;
+    transition: opacity 0.4s ease-in-out;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    pointer-events: none; /* avoid mouse click events inside the dropdown */
+    z-index: 10;
+}
+.echdr_ddc_is_active .echdr_dropdown_checkbox_list {
+    opacity: 1; /* display the dropdown */
+    pointer-events: auto; /* make sure that the user still can select checkboxes */
+}
+
+.echdr_dropdown_checkbox_list li label {
+    display: block;
+    border-bottom: 1px solid silver;
+    padding: 10px;
+    line-height: 30px;
+    transition: all 0.2s ease-out;
+}
+
+.echdr_dropdown_checkbox_list li label:hover {
+    background-color: #fafafa;
+    color: #727171;
+}
+/*** (end) checkbox dropdown list ***/
+
+
+
+
 
 
 /************** (END)SEARCH ************/
@@ -54,55 +170,84 @@ select.filter_spec {
 
 
 /************** LIST ************/
-.specialty, .echdr_filter_dropdown_checkbox {
-    display: none;
-}
 
 .all_drs_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.single_dr_card {
+
+.all_drs_container .single_dr_card {
     width: 30%;
-    display: flex;
-    margin: 30px 10px;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    margin: 30px 0px;
+    column-gap: 10px;
+    /* display: flex;
+    
     flex-wrap: wrap;
-    align-items: center;
+    align-items: center; */
 }
 
-.dr_name {
-    width: 52%;
-    margin-left: 10px;
-}
-.dr_name a {
-    color: #242f62 !important;
-}
 
-.dr_avatar {
-    width: 45%;
+.all_drs_container .single_dr_card .dr_avatar {
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
-.dr_avatar img {
+.all_drs_container .single_dr_card .dr_avatar img {
     border-radius: 100% !important;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
 
-@media(max-width: 991px) {
-.single_dr_card {
-    width: 50%;
-    margin: 30px 0;
+.all_drs_container .single_dr_card .dr_name {
+    position: relative;
 }
+.all_drs_container .single_dr_card .dr_name a {
+    position: absolute;
+    bottom: 0px;
+    color: #242f62 !important;
+    font-size: 18px;
+    font-weight: 600;
 }
+
+@media(max-width:768px) {
+    .all_drs_container .single_dr_card {
+        width: 50%;
+    }
+    .all_drs_container .single_dr_card .dr_name a {
+        font-size: 16px;
+    }
+} /* w768 */
+
+
 
 @media(max-width: 600px) {
-.single_dr_card {
-    width: 100%;
-    margin: 20px 0;
-}
-.dr_avatar {
-    width: 35%;
-}
-}
+    .all_drs_container .single_dr_card {
+        width: 50%;
+        margin: 20px 0;
+        grid-template-columns: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .all_drs_container .single_dr_card .dr_avatar img {
+        width: 90%;
+    }
+    .all_drs_container .single_dr_card .dr_name {
+        margin-top: 15px;
+        text-align: center;
+    }
+    .all_drs_container .single_dr_card .dr_name a {
+        position: unset;        
+    }
+    .all_drs_container .single_dr_card .specialty {
+        text-align: center;
+    }
+} /* w600 */ 
+
 /************** (END)LIST ************/
 
 
@@ -116,12 +261,13 @@ select.filter_spec {
     display: flex;
     justify-content: center;
     margin-left: 0;
+    padding-left: 0px;
 }
 	
 @media(max-width: 600px) {
-.ech_dr_pagination li {
-    margin: 10px;
-}
+    .ech_dr_pagination li {
+        margin: 10px;
+    }
 }
 	
 /************** (END)PAGINATION ************/

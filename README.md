@@ -1,7 +1,12 @@
 # ech-professionals-list
-A Wordpress plugin to display ECH healthcare professionals list. It integrates with the global ECH articles CMS. 
+A Wordpress plugin to display a list of ECH healthcare professionals. This plugin integrates with the global ECH articles CMS. 
 
-This plugin integrates with the TranslatePress plugin, Astra theme and Elementor page builder. Please make sure you already have these installed in the Wordpress site.
+To ensure proper functionality, please ensure that you have the TranslatePress plugin, Astra theme, and Elementor page builder installed on your WordPress site.
+
+
+## Installation
+1. Before installing the plugin, create a new page with a slug `healthcare-professionals`
+2. Install and activate the plugin
 
 
 ## Usage 
@@ -20,7 +25,7 @@ channel_id (INT) | select article channels between ECH app and website. Default 
 
 
 
-## Installation
+### A guideline for echealthcare.com installation
 Below installation guideline is for EC Healthcare website
 1. Install and activiate the plugin
 2. Copy and paste the below CSS code in child folder `style.css` 

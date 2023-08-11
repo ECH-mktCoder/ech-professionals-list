@@ -1,9 +1,130 @@
-
 /************** BREADCRUMB ************/
 .all_single_dr_wrap .sp_breadcrumb {
     display: none;
 }
 /************** (end)BREADCRUMB ************/
+
+
+
+/************** SEARCH ************/
+.ech_dr_filter_container {
+    display: flex;
+}
+.filter_spec_container {
+    width: 20%;
+    font-weight: bold;
+}
+.ech_dr_filter_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+select.filter_spec {
+    border: #242f62 1px solid;
+    color: #242f62;
+    text-align: center;
+    border-radius: 40px;
+    background: #fff;
+}
+
+.dr_filter_btn {
+    margin-left: 20px;
+    border: 1px solid #242f62;
+    padding: 5px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+	background: #242f62;
+    color: #fff;
+}
+.dr_filter_btn:hover {
+    background: #fff;
+    color: #242f62;
+}
+
+@media(max-width: 991px) {
+.filter_spec_container {
+    width: 40%;
+    font-weight: bold;
+}
+}
+
+
+/************** (END)SEARCH ************/
+
+
+
+/************** LIST ************/
+.specialty, .echdr_filter_dropdown_checkbox {
+    display: none;
+}
+
+.all_drs_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.single_dr_card {
+    width: 30%;
+    display: flex;
+    margin: 30px 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dr_name {
+    width: 52%;
+    margin-left: 10px;
+}
+.dr_name a {
+    color: #242f62 !important;
+}
+
+.dr_avatar {
+    width: 45%;
+}
+.dr_avatar img {
+    border-radius: 100% !important;
+}
+
+
+@media(max-width: 991px) {
+.single_dr_card {
+    width: 50%;
+    margin: 30px 0;
+}
+}
+
+@media(max-width: 600px) {
+.single_dr_card {
+    width: 100%;
+    margin: 20px 0;
+}
+.dr_avatar {
+    width: 35%;
+}
+}
+/************** (END)LIST ************/
+
+
+
+/************** PAGINATION ************/
+.ech_dr_pagination li {
+    margin: 30px;
+}
+.ech_dr_pagination ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+}
+	
+@media(max-width: 600px) {
+.ech_dr_pagination li {
+    margin: 10px;
+}
+}
+	
+/************** (END)PAGINATION ************/
 
 
 

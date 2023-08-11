@@ -1,0 +1,55 @@
+h1.entry-title, .clinics_container {
+    display: none !important;
+}
+.single_dr_container {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 0;
+}
+
+.single_dr_container {
+    display: flex;
+    justify-content: space-around;
+	flex-wrap: wrap;
+}
+.profile_container {
+    width: 30%;
+}
+.info_container {
+    width: 60%;
+}
+.info_container .dr_name {
+    width: 100%;
+	margin-left: 0
+}
+
+.edu_container .sub_title {
+    font-weight: bold;
+}
+.spec_container {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.lang_container {
+    margin-bottom: 20px;
+}
+
+@media(max-width:600px) {
+.profile_container {
+    width: 50%;
+}
+.info_container {
+    width: 100%;
+	margin-top: 30px;
+}
+
+}
+
+/************** PHOTO ************/
+.profile_container img {
+    filter: brightness( 100% ) contrast( 100% ) saturate( 100% ) blur( 0px ) hue-rotate( 0deg );
+    border-radius: 300px 300px 300px 300px;
+    box-shadow: -22px 10px 18px 0px #D1D1D1;
+}
+
+/************** (END)PHOTO ************/

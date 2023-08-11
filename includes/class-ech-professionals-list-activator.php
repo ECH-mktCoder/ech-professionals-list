@@ -59,12 +59,23 @@ class Ech_Professionals_List_Activator {
 			add_option( 'ech_pl_dr_pcid_dev', '30001' );
 		}
 
+		// controller of display all types of dr / only dr / only vet
+		$getDisplayDrType = get_option( 'ech_pl_display_dr_type' );
+		if(empty($getDisplayDrType) || !$getDisplayDrType ) {
+            add_option( 'ech_pl_display_dr_type', 'all' );
+        }
 
 
         // set post per page to 12
         $getPPP = get_option( 'ech_pl_ppp' );
         if(empty($getPPP) || !$getPPP ) {
             add_option( 'ech_pl_ppp', 12 );
+        }
+
+		// apply which css files, default is ECH website style
+		$getStyle = get_option('ech_pl_get_style');
+		if(empty($getStyle) || !$getStyle ) {
+            add_option( 'ech_pl_get_style', 'ech_web' );
         }
 
 		// Create VP

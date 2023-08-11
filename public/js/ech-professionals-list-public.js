@@ -109,7 +109,7 @@ function ECHDr_load_more_dr(topage) {
 	});
   
 	var filter_region = filter_region_arr.toString();
-	//console.log('region: '+ filter_region + ' | spec: ' + filter_spec + ' | ppp: ' + ppp);
+	console.log('region: '+ filter_region + ' | spec: ' + filter_spec + ' | ppp: ' + ppp + ' | drType: ' + filter_drType );
   
   
 	// clean DOM 

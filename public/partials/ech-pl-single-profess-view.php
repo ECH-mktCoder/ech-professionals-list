@@ -54,10 +54,6 @@ foreach ($json_arr['personnel']['specialty'] as $specArr) {
 
 
 
-<link rel="stylesheet" href="<?= plugin_dir_url(__DIR__) ?>css/ech-pl-profile.css">
-
-
-
 <div class="all_single_dr_wrap">
     <div class="sp_breadcrumb">
         <div><a href="<?= site_url() ?>"><?= $plugin_public->ECHPL_echolang(['Home', '主頁', '主页']) ?></a> > <a href="<?= site_url() . '/healthcare-professionals/' ?>"><?= $plugin_public->ECHPL_echolang(['Healthcare Professionals', '醫護專業人員', '医护专业人员']) ?></a> > <?= $plugin_public->ECHPL_echolang([$json_arr['personnel']['en_salutation'] . ' ' . $json_arr['personnel']['en_name'], $json_arr['personnel']['tc_name'] . $json_arr['personnel']['tc_salutation'], $json_arr['personnel']['cn_name'] . $json_arr['personnel']['cn_salutation']]) ?> </div>

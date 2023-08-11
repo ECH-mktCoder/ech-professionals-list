@@ -40,12 +40,12 @@
             <div class="form_row">
                 <?php $getVetPcID_live = get_option( 'ech_pl_vet_pcid_live' ); ?>
                 <label>Vet product_category_id value (Live): </label>
-                <input type="text" name="ech_pl_vet_pcid_live" id="ech_pl_vet_pcid_live" pattern="[1-9]{1,}" value="<?=$getVetPcID_live?>">
+                <input type="text" name="ech_pl_vet_pcid_live" id="ech_pl_vet_pcid_live" pattern="[0-9]{1,}" value="<?=$getVetPcID_live?>">
             </div>
             <div class="form_row">
                 <?php $getDrPcID_live = get_option( 'ech_pl_dr_pcid_live' ); ?>
                 <label>Doctor product_category_id value (Live): </label>
-                <input type="text" name="ech_pl_dr_pcid_live" id="ech_pl_dr_pcid_live" pattern="[1-9]{1,}" value="<?=$getDrPcID_live?>">
+                <input type="text" name="ech_pl_dr_pcid_live" id="ech_pl_dr_pcid_live" pattern="[0-9]{1,}" value="<?=$getDrPcID_live?>">
             </div>
 
 
@@ -54,12 +54,12 @@
             <div class="form_row">
                 <?php $getVetPcID_dev = get_option( 'ech_pl_vet_pcid_dev' ); ?>
                 <label>Vet product_category_id value (Dev): </label>
-                <input type="text" name="ech_pl_vet_pcid_dev" id="ech_pl_vet_pcid_dev" pattern="[1-9]{1,}" value="<?=$getVetPcID_dev?>">
+                <input type="text" name="ech_pl_vet_pcid_dev" id="ech_pl_vet_pcid_dev" pattern="[0-9]{1,}" value="<?=$getVetPcID_dev?>">
             </div>
             <div class="form_row">
                 <?php $getDrPcID_dev = get_option( 'ech_pl_dr_pcid_dev' ); ?>
                 <label>Doctor product_category_id value (Dev): </label>
-                <input type="text" name="ech_pl_dr_pcid_dev" id="ech_pl_dr_pcid_dev" pattern="[1-9]{1,}" value="<?=$getDrPcID_dev?>">
+                <input type="text" name="ech_pl_dr_pcid_dev" id="ech_pl_dr_pcid_dev" pattern="[0-9]{1,}" value="<?=$getDrPcID_dev?>">
             </div>
 
 
@@ -79,7 +79,24 @@
             <div class="form_row">
                 <?php $getPPP = get_option( 'ech_pl_ppp' ); ?>
                 <label>Post per page : </label>
-                <input type="text" name="ech_pl_ppp" id="ech_pl_ppp" pattern="[1-9]{1,}" value="<?=$getPPP?>">
+                <input type="text" name="ech_pl_ppp" id="ech_pl_ppp" pattern="[0-9]{1,}" value="<?=$getPPP?>">
+            </div>
+            <div class="form_row">
+                <?php $getDisplayDrType = get_option( 'ech_pl_display_dr_type' ); ?>
+                <label>Display Dr Type : </label>
+                <select name="ech_pl_display_dr_type" id="">
+                    <option value="all" <?= ($getDisplayDrType == "all") ? 'selected' : '' ?>>All</option>
+                    <option value="dr" <?= ($getDisplayDrType == "dr") ? 'selected' : '' ?>>Doctors Only</option>
+                    <option value="vet" <?= ($getDisplayDrType == "vet") ? 'selected' : '' ?>>Vet Only</option>
+                </select>
+            </div>
+            <div class="form_row">
+                <?php $getListStyle = get_option( 'ech_pl_get_style' ); ?>
+                <label>Apply List Style : </label>
+                <select name="ech_pl_get_style" id="">
+                    <option value="ech_web" <?= ($getListStyle == "ech_web") ? 'selected' : '' ?>>ECH Website Style</option>
+                    <option value="ec_vet" <?= ($getListStyle == "ec_vet") ? 'selected' : '' ?>>EC Vet Style</option>
+                </select>
             </div>
 
 

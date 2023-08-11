@@ -215,10 +215,6 @@ div[data-elementor-type='header'] > .elementor-section {
         margin-right: 0px !important;
     }
 
-    /* .ech_dr_filter_container .filter_regions_container,
-    .ech_dr_filter_container .filter_spec_container {
-        max-width: 49% !important;
-    } */
 
     .ech_dr_big_wrap .ech_dr_filter_container select {
         width: 100%; 

@@ -37,7 +37,6 @@ $json_arr = json_decode($get_post_json, true);
 ?>
 
 
-<link rel="stylesheet" href="<?= plugin_dir_url(__DIR__) ?>css/ech-pl-category-list.css">
 
 
 <?php 

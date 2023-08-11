@@ -1,0 +1,33 @@
+
+/************** BREADCRUMB ************/
+.all_single_dr_wrap .sp_breadcrumb {
+    display: none;
+}
+/************** (end)BREADCRUMB ************/
+
+
+
+/************** LOADING ************/
+
+.ech_dr_container .loading_div {
+    width: 100%;
+    height: 380px;
+    display: none;
+}
+
+.ech_dr_container .loading_div p {
+    margin-bottom: 0px;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.2em;
+    color: #666;
+}
+
+
+
+@media(max-width: 600px) {
+    .ech_dr_container .loading_div p {
+        font-size: 18px;
+    }
+} /* w600 */
+/************** (END)LOADING ************/

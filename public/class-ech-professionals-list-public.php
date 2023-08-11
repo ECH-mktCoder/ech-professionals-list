@@ -63,7 +63,40 @@ class Ech_Professionals_List_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ech-professionals-list-public.css', array(), $this->version, 'all' );
+
+		switch(get_option('ech_pl_get_style')) {
+			case 'ec_vet': 
+				// vet list style
+				wp_enqueue_style( $this->plugin_name.'_vet', plugin_dir_url( __FILE__ ) . 'css/ech-vet-list.css', array(), $this->version, 'all' );
+
+				// single vet style
+				if( strpos($_SERVER['REQUEST_URI'], "healthcare-professionals/professional-profile") !== false)  {
+					wp_enqueue_style( $this->plugin_name.'_vet_profile', plugin_dir_url( __FILE__ ) . 'css/ech-vet-profile.css', array(), $this->version, 'all' );
+				}
+
+				// vet cates & tags style
+				if( strpos($_SERVER['REQUEST_URI'], "healthcare-professionals/specialty-categories") !== false)  {
+					wp_enqueue_style( $this->plugin_name.'_vet_cate_tag_list', plugin_dir_url( __FILE__ ) . 'css/ech-vet-category-list.css', array(), $this->version, 'all' );
+				}
+
+				break;
+
+			default: // all and dr only
+				// all list style
+				wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/ech-professionals-list-public.css', array(), $this->version, 'all' );
+
+				// single dr style
+				if( strpos($_SERVER['REQUEST_URI'], "healthcare-professionals/professional-profile") !== false)  {
+					wp_enqueue_style( $this->plugin_name.'_dr_profile', plugin_dir_url( __FILE__ ) . 'css/ech-pl-profile.css', array(), $this->version, 'all' );
+				}
+
+				// dr cates & tags style
+				if( strpos($_SERVER['REQUEST_URI'], "healthcare-professionals/specialty-categories") !== false)  {
+					wp_enqueue_style( $this->plugin_name.'_dr_cate_tag_list', plugin_dir_url( __FILE__ ) . 'css/ech-pl-category-list.css', array(), $this->version, 'all' );
+				}
+
+
+		}
 	}
 
 	/**
@@ -90,22 +123,42 @@ class Ech_Professionals_List_Public {
 		$channel_id = (int)$paraArr['channel_id'];
 	
 		
-		$get_drType = '';
+		
 
-		// Doctor and Vet must be displayed separately. Whatever $_GET['dr_type] value that is not "vet" or undefined, display the Doctor List
-		switch(strtolower($_GET['dr_type'])) {
-			case 'vet':
-				$get_drType = $this->ECHPL_get_dr_type_id('Vet');
+		$getDisplayDrType = get_option( 'ech_pl_display_dr_type' );
+		$currDrType = '';
+
+		switch($getDisplayDrType) {
+			case 'dr': 
+				$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
 				break;
-			default: 
-				$get_drType = $this->ECHPL_get_dr_type_id('Doctor');
+
+			case 'vet':
+				$currDrType = $this->ECHPL_get_dr_type_id('Vet');
+				break;
+
+			default: // display all
+				if ( isset($_GET['dr_type']) || !empty($_GET['dr_type']) ) {
+					// Doctor and Vet must be displayed separately. Whatever $_GET['dr_type] value that is not "vet" or undefined, display the Doctor List
+					switch(strtolower($_GET['dr_type'])) {
+						case 'vet':
+							$currDrType = $this->ECHPL_get_dr_type_id('Vet');
+							break;
+						default: 
+							$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
+					}
+				} else {
+					$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
+				}
 		}
+		
+		
 
 	
 		$api_args = array(
 			'page_size'=>$ppp,
 			'channel_id' => $channel_id,
-			'product_category_id' => $get_drType
+			'product_category_id' => $currDrType
 		);
 
 	
@@ -118,10 +171,10 @@ class Ech_Professionals_List_Public {
 		
 		
 		/*********** FITLER ************/
-		$output .= '<div class="ech_dr_filter_container">';
-		$output .= $this->ECPL_get_dr_type(strtolower($_GET['dr_type']));
+		$output .= '<div class="ech_dr_filter_container">';		
+		$output .= $this->ECPL_get_dr_type();
 		$output .= $this->ECHPL_get_regions();
-		$output .= $this->ECHPL_get_spec(strtolower($_GET['dr_type']));
+		$output .= $this->ECHPL_get_spec();
 		$output .= '<div class="dr_filter_btn_container"><div class="dr_filter_btn">'.$this->ECHPL_echolang(['Submit', '提交', '提交']).'</div></div>';
 		$output .= '</div>'; //ech_dr_filter_container
 		/*********** (END) FITLER ************/
@@ -135,7 +188,7 @@ class Ech_Professionals_List_Public {
 		$output .= '<div class="loading_div"><p>'. $this->ECHPL_echolang(['Loading...','載入中...','载入中...']).'</p></div>';
 		/*** (end) loading div ***/
 
-		$output .= '<div class="all_drs_container" data-ppp="'.$ppp.'" data-channel="'.$channel_id .'" data-brandid="" data-region="" data-specialty="" data-drtype="'.$get_drType.'">';
+		$output .= '<div class="all_drs_container" data-ppp="'.$ppp.'" data-channel="'.$channel_id .'" data-brandid="" data-region="" data-specialty="" data-drtype="'.$currDrType.'">';
 			foreach ($json_arr['result'] as $dr) {
 				$output .= $this->ECHPL_load_card_template($dr);
 			}
@@ -232,18 +285,31 @@ class Ech_Professionals_List_Public {
 	}
 
 
-	public function ECHPL_get_spec($drType) {
+	public function ECHPL_get_spec() {
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
 
-		switch ($drType) {
-			case 'vet': 
+
+		switch(get_option('ech_pl_display_dr_type')) {
+			case 'vet':
 				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$vetTypeID;
 				break;
-			default: 
+
+			case 'dr':
 				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$drTypeID;
-				
+				break;
+
+			default: // display all
+				switch (strtolower($_GET['dr_type'])) {
+					case 'vet': 
+						$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$vetTypeID;
+						break;
+					default: 
+						$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$drTypeID;
+						
+				}
 		}
+		
 
 		$get_sp_json = $this->ECHPL_curl_json($full_api);
 		$json_arr = json_decode($get_sp_json, true);
@@ -263,27 +329,41 @@ class Ech_Professionals_List_Public {
 	}
 
 
-	public function ECPL_get_dr_type($get_drType){
+	public function ECPL_get_dr_type(){
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
 
-		$selectedDr = false;
-		$selectedVet = false;
-		switch(strtolower($get_drType)) {
-			case 'vet':
-				$selectedVet = true;
-				break;
-			default: 
-				$selectedDr = true;
-		}
-
-
+		
 		$html = '';
 		$html .= '<div class="filter_drType_container">';
-			$html .= '<select name="dr_type" class="filter_drType">';
-				$html .= '<option value="'.$drTypeID.'" '. ($selectedDr ? 'selected': '') .'>'.$this->ECHPL_echolang(['Doctor', '醫生', '医生']).'</option>';
-				$html .= '<option value="'.$vetTypeID.'" '. ($selectedVet ? 'selected': '') .'>'.$this->ECHPL_echolang(['Vet', '獸醫', '兽医']).'</option>';			
-			$html .= '</select>';
+
+		switch(get_option('ech_pl_display_dr_type')) {
+			case 'vet':
+				$html .= '<input type="hidden" value="'.$vetTypeID.'" class="filter_drType" />';
+				break;
+
+			case 'dr':
+				$html .= '<input type="hidden" value="'.$drTypeID.'" class="filter_drType" />';
+				break;
+
+			default: // display all
+				$selectedDr = false;
+				$selectedVet = false;
+				switch(strtolower($_GET['dr_type'])) {
+					case 'vet':
+						$selectedVet = true;
+						break;
+					default: 
+						$selectedDr = true;
+				}
+				
+				$html .= '<select name="dr_type" class="filter_drType">';
+					$html .= '<option value="'.$drTypeID.'" '. ($selectedDr ? 'selected': '') .'>'.$this->ECHPL_echolang(['Doctor', '醫生', '医生']).'</option>';
+					$html .= '<option value="'.$vetTypeID.'" '. ($selectedVet ? 'selected': '') .'>'.$this->ECHPL_echolang(['Vet', '獸醫', '兽医']).'</option>';			
+				$html .= '</select>';
+				
+		}
+
 		$html .= '</div>'; //filter_spec_container
 
 		return $html;

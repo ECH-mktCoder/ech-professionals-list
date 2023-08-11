@@ -34,10 +34,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 
 
-// delete options in wp_options DB when uninstall the plugin
-delete_option('ech_pl_apply_api_env');
-delete_option('ech_pl_ppp');
-
-
 
 

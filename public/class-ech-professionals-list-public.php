@@ -251,7 +251,7 @@ class Ech_Professionals_List_Public {
 				$html .= $this->ECHPL_load_card_template($dr);
 			}
 		} else {
-			$html .= $this->ECHPL_echolang(['No info ...' , '沒有資料', '没有资料']);
+			$html .= $this->ECHPL_echolang(['No result ...' , '沒有結果', '没有结果']);
 		}
 	
 		echo json_encode(array('html'=>$html, 'max_page' => $max_page), JSON_UNESCAPED_SLASHES);
@@ -399,7 +399,7 @@ class Ech_Professionals_List_Public {
 				$html .= $this->ECHPL_load_card_template($post);
 			}
 		} else {
-			$html .= $this->ECHPL_echolang(['No posts ...' , '沒有文章', '没有文章']);
+			$html .= $this->ECHPL_echolang(['No result ...' , '沒有結果', '没有结果']);
 		}
 		
 		echo json_encode(array('html'=>$html, 'max_page' => $max_page, 'api' => $api_link), JSON_UNESCAPED_SLASHES);

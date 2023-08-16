@@ -197,7 +197,8 @@ div[data-elementor-type='header'] > .elementor-section {
     }
 
     .ech_dr_big_wrap .ech_dr_filter_container .filter_drType_container,
-    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_regions_container,
+    .ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container
      {
         max-width: 49%;
         width: 100%;
@@ -205,10 +206,10 @@ div[data-elementor-type='header'] > .elementor-section {
     }
 
 
-    .ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
+    /* .ech_dr_big_wrap .ech_dr_filter_container .filter_spec_container {
         max-width: 99%;
         width: 100%;
-    }
+    } */
 
     
     .ech_dr_filter_container .filter_spec_container {
@@ -385,7 +386,8 @@ div[data-elementor-type='header'] > .elementor-section {
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 100%; /* align the dropdown right below the dropdown text */
+    /*top: 100%;*/ /* align the dropdown right below the dropdown text */
+    top: 60%;
     border: inherit;
     border-top: none;
     left: -1px; /* align the dropdown to the left */
@@ -398,6 +400,7 @@ div[data-elementor-type='header'] > .elementor-section {
     overflow-x: hidden;
     pointer-events: none; /* avoid mouse click events inside the dropdown */
     z-index: 10;
+    padding-left: 0px !important;
 }
 .echdr_ddc_is_active .echdr_dropdown_checkbox_list {
     opacity: 1; /* display the dropdown */

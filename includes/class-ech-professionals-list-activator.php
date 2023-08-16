@@ -78,6 +78,13 @@ class Ech_Professionals_List_Activator {
             add_option( 'ech_pl_get_style', 'ech_web' );
         }
 
+
+		// controller of enable / disable breadcrumb
+		$getBreadcrumb = get_option('ech_pl_enable_breadcrumb');
+		if(empty($getBreadcrumb) || !$getBreadcrumb ) {
+            add_option( 'ech_pl_enable_breadcrumb', 0 );
+        }
+
 		// Create VP
         self::createVP('Healthcare Professional Profile', 'professional-profile', '[dr_profile_output]');
         self::createVP('Healthcare Professional Categories', 'specialty-categories', '[dr_category_list_output]');		

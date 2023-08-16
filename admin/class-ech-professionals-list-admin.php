@@ -131,6 +131,7 @@ class Ech_Professionals_List_Admin {
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_dr_pcid_live');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_display_dr_type');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_get_style');
+		register_setting( 'ech_pl_gen_settings', 'ech_pl_enable_breadcrumb');
 	}
 
 }

@@ -11,11 +11,41 @@
 			e.stopPropagation();
 		});
 
+
+		/**** Filters display conditions on Doctors / Vet selection *****/
+		/*********
+		 * Doctor selection : type & doctor spec filters will be shown
+		 * Vet selection: type & vet region filters will be shown
+		 *********/
+		var initDrTypeID = $('.ech_dr_filter_container .filter_drType').val();
+		switch(initDrTypeID) {
+			case '30001': // dr
+				$('.ech_dr_filter_container .filter_regions_container').css('display','none');
+				$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
+				break;
+			default: 
+				$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block!important');
+				$('.ech_dr_filter_container .filter_spec_container').css('display','none!important');
+		}
+
 		// Change specialty options when clicked dr type
 		$('.ech_dr_filter_container .filter_drType').on('change', function(){
 			var typeID = $(this).val();
 			ECHDr_updateSpecOptions(typeID);
+			// clear checked regions 
+			$('.filter_regions_container input[name="region"]').removeAttr('checked');
+
+			switch(typeID) {
+				case '30001': // dr
+					$('.ech_dr_filter_container .filter_regions_container').css('display','none');
+					$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
+					break;
+				default: 
+					$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block');
+					$('.ech_dr_filter_container .filter_spec_container').css('display','none');
+			}
 		});
+		/**** (end) Filters display conditions on Doctors / Vet selection *****/
 
 		// filter submit button
 		$('.ech_dr_filter_container .dr_filter_btn').click(function(){
@@ -134,7 +164,7 @@ function ECHDr_load_more_dr(topage) {
 	  success: function (res) {
 		var jsonObj = JSON.parse(res);
 
-		//console.log('max page: ' + jsonObj.max_page);
+		console.log('max page: ' + jsonObj.max_page);
 		jQuery(".all_drs_container").html(jsonObj.html);
 		jQuery(".ech_dr_container .loading_div").css("display", "none");
   

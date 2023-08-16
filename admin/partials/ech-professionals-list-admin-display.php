@@ -98,6 +98,14 @@
                     <option value="ec_vet" <?= ($getListStyle == "ec_vet") ? 'selected' : '' ?>>EC Vet Style</option>
                 </select>
             </div>
+            <div class="form_row">
+                <?php $getBreadcrumb = get_option('ech_pl_enable_breadcrumb'); ?>
+                <label>Apply Breadcrumb on "Single Profile" and "Categories / Tags" pages: </label>
+                <select name="ech_pl_enable_breadcrumb" id="">
+                    <option value="0" <?= ($getBreadcrumb == "0") ? 'selected' : '' ?>>No</option>
+                    <option value="1" <?= ($getBreadcrumb == "1") ? 'selected' : '' ?>>Yes</option>
+                </select>
+            </div>
 
 
             <div class="form_row">

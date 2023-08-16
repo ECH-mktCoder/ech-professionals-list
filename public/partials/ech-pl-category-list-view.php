@@ -48,9 +48,11 @@ $json_arr = json_decode($get_post_json, true);
 
 
 <div class="ech_dr_sp_list_all_wrap">
-    <div class="sp_breadcrumb">
-        <div><a href="<?= site_url() ?>"><?= $plugin_public->ECHPL_echolang(['Home', '主頁', '主页']) ?></a> > <a href="<?=site_url() . '/healthcare-professionals/' ?>"><?=$plugin_public->ECHPL_echolang(['Healthcare Professionals','醫護專業人員','医护专业人员'])?></a> > <?=$plugin_public->ECHPL_echolang(['Specialist','專科','专科']).': '.$sp_name ?> </div>
-    </div> <!-- sp_breadcrumb -->
+    <?php if (get_option('ech_pl_enable_breadcrumb') == 1): ?>
+        <div class="sp_breadcrumb">
+            <div><a href="<?= site_url() ?>"><?= $plugin_public->ECHPL_echolang(['Home', '主頁', '主页']) ?></a> > <a href="<?=site_url() . '/healthcare-professionals/' ?>"><?=$plugin_public->ECHPL_echolang(['Healthcare Professionals','醫護專業人員','医护专业人员'])?></a> > <?=$plugin_public->ECHPL_echolang(['Specialist','專科','专科']).': '.$sp_name ?> </div>
+        </div> <!-- sp_breadcrumb -->
+    <?php endif; ?>
 
     <div class="echdr_page_anchor"></div>
 

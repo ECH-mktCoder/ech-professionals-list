@@ -172,9 +172,22 @@ class Ech_Professionals_List_Public {
 		
 		/*********** FITLER ************/
 		$output .= '<div class="ech_dr_filter_container">';		
-		$output .= $this->ECPL_get_dr_type();
-		$output .= $this->ECHPL_get_regions();
-		$output .= $this->ECHPL_get_spec();
+
+		switch(get_option('ech_pl_display_dr_type')) {
+			case 'vet':
+				$output .= $this->ECPL_get_dr_type();
+				$output .= $this->ECHPL_get_regions();
+				break;
+			case 'dr':
+				$output .= $this->ECPL_get_dr_type();
+				$output .= $this->ECHPL_get_spec();
+				break;
+			default: 
+				$output .= $this->ECPL_get_dr_type();
+				$output .= $this->ECHPL_get_regions();
+				$output .= $this->ECHPL_get_spec();
+		}
+
 		$output .= '<div class="dr_filter_btn_container"><div class="dr_filter_btn">'.$this->ECHPL_echolang(['Submit', '提交', '提交']).'</div></div>';
 		$output .= '</div>'; //ech_dr_filter_container
 		/*********** (END) FITLER ************/
@@ -266,6 +279,7 @@ class Ech_Professionals_List_Public {
 		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_location_list?region_key=香港特别行政区';
 		$get_regions_json = $this->ECHPL_curl_json($full_api);
 		$json_arr = json_decode($get_regions_json, true);
+
 
 		$html = '';
 
@@ -394,7 +408,8 @@ class Ech_Professionals_List_Public {
 		$max_page = '';
 		if(isset($json_arr['result']) && $json_arr['count'] != 0 ) {
 			$total_posts = $json_arr['count'];
-			$max_page = round($total_posts/$ppp, 0);
+			//$max_page = round($total_posts/$ppp, 0);
+			$max_page = ceil($total_posts/$ppp);
 			foreach ($json_arr['result'] as $post) {
 				$html .= $this->ECHPL_load_card_template($post);
 			}

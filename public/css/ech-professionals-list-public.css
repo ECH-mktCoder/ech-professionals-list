@@ -386,8 +386,7 @@ div[data-elementor-type='header'] > .elementor-section {
     margin: 0;
     padding: 0;
     position: absolute;
-    /*top: 100%;*/ /* align the dropdown right below the dropdown text */
-    top: 60%;
+    top: 100%; /* align the dropdown right below the dropdown text */
     border: inherit;
     border-top: none;
     left: -1px; /* align the dropdown to the left */

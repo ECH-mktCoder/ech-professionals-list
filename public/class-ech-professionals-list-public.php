@@ -183,9 +183,20 @@ class Ech_Professionals_List_Public {
 				$output .= $this->ECHPL_get_spec();
 				break;
 			default: 
-				$output .= $this->ECPL_get_dr_type();
-				$output .= $this->ECHPL_get_regions();
-				$output .= $this->ECHPL_get_spec();
+				if ( isset($_GET['dr_type']) || !empty($_GET['dr_type']) ) {
+					switch(strtolower($_GET['dr_type'])) {
+						case 'vet':
+							$output .= $this->ECPL_get_dr_type();
+							$output .= $this->ECHPL_get_regions();
+							break;
+						default: 
+							$output .= $this->ECPL_get_dr_type();
+							$output .= $this->ECHPL_get_spec();
+					}
+				} else {
+					$output .= $this->ECPL_get_dr_type();
+					$output .= $this->ECHPL_get_spec();
+				}
 		}
 
 		$output .= '<div class="dr_filter_btn_container"><div class="dr_filter_btn">'.$this->ECHPL_echolang(['Submit', '提交', '提交']).'</div></div>';

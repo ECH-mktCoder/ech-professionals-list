@@ -195,6 +195,7 @@ class Ech_Professionals_List_Public {
 					}
 				} else {
 					$output .= $this->ECPL_get_dr_type();
+					$output .= $this->ECHPL_get_regions();
 					$output .= $this->ECHPL_get_spec();
 				}
 		}

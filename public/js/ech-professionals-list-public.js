@@ -24,8 +24,8 @@
 				$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
 				break;
 			default: 
-				$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block!important');
-				$('.ech_dr_filter_container .filter_spec_container').css('display','none!important');
+				$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block');
+				$('.ech_dr_filter_container .filter_spec_container').css('display','none');
 		}
 
 		// Change specialty options when clicked dr type

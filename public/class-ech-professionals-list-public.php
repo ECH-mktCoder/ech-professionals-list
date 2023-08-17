@@ -117,39 +117,29 @@ class Ech_Professionals_List_Public {
 		$paraArr = shortcode_atts(array(
 			'ppp' => get_option('ech_pl_ppp'),
 			'channel_id' => 4,
+			'dr_type' => null
 		), $atts);
 
 		$ppp = (int)$paraArr['ppp'];
 		$channel_id = (int)$paraArr['channel_id'];
-	
+		$dr_type = strtolower(htmlspecialchars(str_replace(' ', '', $paraArr['dr_type'])));
 		
 		
+		if ( $dr_type != null ) {
+			$getDisplayDrType = $dr_type;
+		} else {
+			$getDisplayDrType = get_option( 'ech_pl_display_dr_type' );
+		}
 
-		$getDisplayDrType = get_option( 'ech_pl_display_dr_type' );
 		$currDrType = '';
 
 		switch($getDisplayDrType) {
-			case 'dr': 
-				$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
-				break;
-
 			case 'vet':
 				$currDrType = $this->ECHPL_get_dr_type_id('Vet');
 				break;
 
 			default: // display all
-				if ( isset($_GET['dr_type']) || !empty($_GET['dr_type']) ) {
-					// Doctor and Vet must be displayed separately. Whatever $_GET['dr_type] value that is not "vet" or undefined, display the Doctor List
-					switch(strtolower($_GET['dr_type'])) {
-						case 'vet':
-							$currDrType = $this->ECHPL_get_dr_type_id('Vet');
-							break;
-						default: 
-							$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
-					}
-				} else {
-					$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
-				}
+				$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
 		}
 		
 		
@@ -173,19 +163,21 @@ class Ech_Professionals_List_Public {
 		/*********** FITLER ************/
 		$output .= '<div class="ech_dr_filter_container">';		
 
-		switch(get_option('ech_pl_display_dr_type')) {
+		switch($getDisplayDrType) {
 			case 'vet':
-				$output .= $this->ECPL_get_dr_type();
+				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
 				$output .= $this->ECHPL_get_regions();
 				break;
+			
 			case 'dr':
-				$output .= $this->ECPL_get_dr_type();
-				$output .= $this->ECHPL_get_spec();
+				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
+				$output .= $this->ECHPL_get_spec($getDisplayDrType);
 				break;
+			
 			default: 
-				$output .= $this->ECPL_get_dr_type();
+				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
 				$output .= $this->ECHPL_get_regions();
-				$output .= $this->ECHPL_get_spec();
+				$output .= $this->ECHPL_get_spec($getDisplayDrType);
 		}
 
 		$output .= '<div class="dr_filter_btn_container"><div class="dr_filter_btn">'.$this->ECHPL_echolang(['Submit', '提交', '提交']).'</div></div>';
@@ -299,29 +291,18 @@ class Ech_Professionals_List_Public {
 	}
 
 
-	public function ECHPL_get_spec() {
+	public function ECHPL_get_spec($getDisplayDrType) {
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
 
 
-		switch(get_option('ech_pl_display_dr_type')) {
+		switch($getDisplayDrType) {
 			case 'vet':
 				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$vetTypeID;
 				break;
 
-			case 'dr':
-				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$drTypeID;
-				break;
-
 			default: // display all
-				switch (strtolower($_GET['dr_type'])) {
-					case 'vet': 
-						$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$vetTypeID;
-						break;
-					default: 
-						$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$drTypeID;
-						
-				}
+				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$drTypeID;
 		}
 		
 
@@ -343,7 +324,7 @@ class Ech_Professionals_List_Public {
 	}
 
 
-	public function ECPL_get_dr_type(){
+	public function ECPL_get_dr_type($getDisplayDrType){
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
 
@@ -351,7 +332,7 @@ class Ech_Professionals_List_Public {
 		$html = '';
 		$html .= '<div class="filter_drType_container">';
 
-		switch(get_option('ech_pl_display_dr_type')) {
+		switch($getDisplayDrType) {
 			case 'vet':
 				$html .= '<input type="hidden" value="'.$vetTypeID.'" class="filter_drType" />';
 				break;
@@ -363,7 +344,7 @@ class Ech_Professionals_List_Public {
 			default: // display all
 				$selectedDr = false;
 				$selectedVet = false;
-				switch(strtolower($_GET['dr_type'])) {
+				switch($getDisplayDrType) {
 					case 'vet':
 						$selectedVet = true;
 						break;

@@ -22,7 +22,7 @@ Attribute | Description
 ----------|-------------
 ppp (INT) | post per page. Default vaule is `12`
 channel_id (INT) | select article channels between ECH app and website. Default value is `4` (website)
-
+dr_type (String) | `all` / `vet` / `dr`. Used to control the display of doctors based on their type. This will override the "Display Dr Type" setting on plugin admin page. 
 
 
 ### A guideline for echealthcare.com installation

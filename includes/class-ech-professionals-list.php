@@ -199,6 +199,7 @@ class Ech_Professionals_List {
 		
 		// ^^^ Add shortcodes
 		$this->loader->add_shortcode( 'ech_pl', $plugin_public, 'echpl_display_profess_list');
+		$this->loader->add_shortcode( 'ech_pl_by_spec', $plugin_public, 'ECHLP_display_profess_list_by_spec');
 		$this->loader->add_shortcode( 'dr_profile_output', $virtual_page_public, 'dr_profile_output');
 		$this->loader->add_shortcode( 'dr_category_list_output', $virtual_page_public, 'dr_category_list_output');
 

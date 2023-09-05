@@ -134,4 +134,72 @@ class Ech_Professionals_List_Admin {
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_enable_breadcrumb');
 	}
 
+
+
+
+	public function ADMIN_ECHPL_get_pcid($type) {
+		$getApiEnv = get_option( 'ech_pl_apply_api_env' );
+		if ($getApiEnv == "0") {
+			$vet_pcid = get_option( 'ech_pl_vet_pcid_dev' );
+			$dr_pcid = get_option( 'ech_pl_dr_pcid_dev' );
+		} else {
+			$vet_pcid = get_option( 'ech_pl_vet_pcid_live' );
+			$dr_pcid = get_option( 'ech_pl_dr_pcid_live' );
+		}
+
+		switch($type) {
+			case 'vet': 
+				return $vet_pcid;
+				break;
+			default:
+				return $dr_pcid;
+		}
+	}
+
+
+	public function ADMIN_ECHPL_get_env_states() {
+		$getApiEnv = get_option( 'ech_pl_apply_api_env' );
+		if ( $getApiEnv == "0") {
+			return 'DEV';
+		} else {
+			return 'LIVE';
+		}
+	}
+	/*********************************************
+	 * Based on the dashboard settings, get api domain
+	 *********************************************/
+	public function ADMIN_ECHPL_get_api_domain() {
+		$getApiEnv = get_option( 'ech_pl_apply_api_env' );
+		if ( $getApiEnv == "0") {
+			$api_domain = 'https://globalcms-api-uat.umhgp.com';
+		} else {
+			$api_domain = 'https://globalcms-api.umhgp.com';
+		}
+
+		return $api_domain;
+	}
+
+	/**************************************
+	 * Curl function
+	 **************************************/
+	public function ADMIN_ECHPL_curl_json($api_link) {
+		$ch = curl_init();
+	
+		$api_headers = array(
+			'accept: application/json',
+			'version: v1',
+		);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $api_headers);
+		curl_setopt($ch, CURLOPT_URL, $api_link);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+			echo 'Error:' . curl_error($ch);
+		}
+		curl_close($ch);
+	
+		return $result;
+	}
+
 }

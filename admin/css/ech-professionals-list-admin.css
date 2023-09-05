@@ -74,6 +74,25 @@
   }
  
  
+.spec_info_container {
+  margin: 30px 0px;
+}
+.spec_info_container p {
+  font-size: 15px;
+  line-height: 1.2em;
+}
+.spec_info_container .spec_info_list {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #d7d7d7;
+    display: flex;
+    flex-wrap: wrap;
+}
+.spec_info_container .spec_info_list div {
+  padding: 5px;
+  width: 24%;
+}
+
   /****** COPY SHORTCODE *****/
   .plg_intro p {
     font-size: 1.2em;
@@ -90,7 +109,7 @@
     font-family: Courier, 'Courier New', monospace;
   }
  
-  #copyShortcode {
+  .copyShortcode {
     padding: 7px 0;
     text-align: center;
     background-color: rgb(0, 73, 138);
@@ -100,9 +119,10 @@
     font-size: 15px;
     max-width: 120px;
     width: 100%;
+    margin-bottom: 30px;
   }
  
-  #copyMsg {
+  .copyMsg {
     color: red;
     font-size: 15px;
     line-height: 1.2em;

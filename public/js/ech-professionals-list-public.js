@@ -60,6 +60,7 @@
 				$(".echdr_filter_dropdown_checkbox").removeClass("echdr_ddc_is_active");
 			}        
 		});
+
 	  
 	}); // ready
 	 
@@ -118,9 +119,56 @@ function ECHDr_load_more_dr(topage) {
 		console.error(res);
 	  },
 	});
-  }
+}
   
   
+
+/******* BY SPEC-LOAD MORE BUTTON *******/
+function ECHDrBySpec_load_more_dr() {
+	jQuery(".echlp_load_more_container .loading_text").css('display','block');
+	// get values
+	var ppp = jQuery(".echlp_load_more_btn").data("ppp");
+	var maxPage = jQuery(".echlp_load_more_btn").data("maxpage");
+	var currPage = jQuery(".echlp_load_more_btn").data("currpage");
+	var filterChannel = jQuery(".echlp_load_more_btn").data("channel");
+	var filterSp = jQuery(".echlp_load_more_btn").data("specid");
+	var filterDrType = jQuery(".echlp_load_more_btn").data("drtype");
+
+	jQuery.ajax({
+		url: "/wp-admin/admin-ajax.php",
+		type: "post",
+		data: {
+			ppp: ppp,
+			toPage: currPage + 1,
+			filterChannel: filterChannel,
+			filterSp: filterSp,
+			filterDrType: filterDrType,
+			action: "ECHPL_load_more_dr",
+		},
+		success: function (res) {
+			jQuery(".echlp_load_more_container .loading_text").css('display','none');
+			var jsonObj = JSON.parse(res);
+			//console.log(jsonObj);
+			jQuery(".echpl_by_spec_container").append(jsonObj.html);      
+			jQuery(".echlp_load_more_btn").data("currpage", currPage+1); 
+			jQuery(".echlp_load_more_btn").attr("data-currpage", currPage+1); 
+			
+			// get updated current page value
+			var getCurrPage = jQuery(".echlp_load_more_btn").data("currpage");
+			// "Load More" button display none once reached maxPage
+			if ( getCurrPage >= maxPage ) {
+				jQuery('.echlp_load_more_container').css('display', 'none');
+			}
+		},
+		error: function (res) {
+			console.error(res);
+		},
+	});
+}
+
+/******* (end)BY SPEC-LOAD MORE BUTTON *******/
+
+
   
   
   /*************************************************

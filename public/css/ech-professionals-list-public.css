@@ -277,6 +277,59 @@
 } /* w520 */
 
 
+/******************* DR BY SPEC ********************/
+.echpl_by_spec_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.echpl_by_spec_container .single_dr_card {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 30px;
+}
+
+@media(max-width: 768px) {
+    .echpl_by_spec_container .single_dr_card {
+        width: 33%;
+    }
+} /* w768 */
+
+@media(max-width: 600px) {
+    .echpl_by_spec_container .single_dr_card {
+        width: 50%;
+    }
+} /* w600 */
+
+
+/*** load more button ***/
+
+.echlp_load_more_container {
+    text-align: center;
+}
+.echlp_load_more_container .loading_text {
+    display: none;
+    font-size: 15px;
+    line-height: 1em;
+    margin-bottom: 10px;
+}
+.echlp_load_more_container .echlp_load_more_btn {
+    max-width: 150px;
+    width: 100%;
+    margin: 0 auto;
+    background: #233162;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 0px;
+}
+
+/*** (end)load more button ***/
+
+/******************* (end)DR BY SPEC ********************/
+
+
+
+
 /******* PAGINATION ********/
 
 .ech_dr_container .ech_dr_pagination {

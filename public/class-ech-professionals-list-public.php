@@ -112,7 +112,9 @@ class Ech_Professionals_List_Public {
 	}
 
 
-	// Shortcode function
+	
+	/******************************** SHORTCODE FUNCTIONS ********************************/
+
 	public function echpl_display_profess_list($atts) {
 		$paraArr = shortcode_atts(array(
 			'ppp' => get_option('ech_pl_ppp'),
@@ -217,6 +219,80 @@ class Ech_Professionals_List_Public {
 		return $output;
 	} //echpl_display_profess_list
 
+	
+
+
+	/**************************************
+	 * Display dr list by spec
+	 **************************************/
+	public function ECHLP_display_profess_list_by_spec($atts) {
+		$paraArr = shortcode_atts(array(
+			'ppp' => get_option('ech_pl_ppp'),
+			'channel_id' => 4,
+			'dr_type' => null,
+			'spec_id' => null
+		), $atts);
+
+		$ppp = (int)$paraArr['ppp'];
+		$channel_id = (int)$paraArr['channel_id'];
+		$dr_type = strtolower(htmlspecialchars(str_replace(' ', '', $paraArr['dr_type'])));
+		$spec_id = (int)$paraArr['spec_id'];
+
+
+		if ($dr_type == null) {
+			return '<div class="code_error">shortcode error - dr_type not specified</div>';
+		}
+		if ($spec_id == null) {
+			return '<div class="code_error">shortcode error - spec_id not specified</div>';
+		}
+
+		
+		switch($dr_type) {
+			case 'vet':
+				$currDrType = $this->ECHPL_get_dr_type_id('Vet');
+				break;
+
+			default: // display all
+				$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
+		}
+
+		$api_args = array(
+			'page_size'=>$ppp,
+			'channel_id' => $channel_id,
+			'product_category_id' => $currDrType,
+			'specialty_id' => $spec_id
+		);
+
+		$api_link = $this->ECHPL_gen_profList_api_link($api_args);
+		$get_drList_json = $this->ECHPL_curl_json($api_link);
+		$json_arr = json_decode($get_drList_json, true);
+
+
+		$output = '';
+		$output .= '<div class="echpl_by_spec_container">';
+			foreach ($json_arr['result'] as $dr) {
+				$output .= $this->ECHPL_load_card_template($dr);
+			}
+		$output .= '</div>'; // echpl_by_spec_container
+
+
+		$total_posts = $json_arr['count'];
+		$max_page = ceil($total_posts/$ppp);
+
+		if ($max_page > 1) {
+			$output .= '<div class="echlp_load_more_container">';
+				$output .= '<div class="loading_text">'.$this->ECHPL_echolang(['Loading...','請稍等...','请稍等...']).'</div>';
+				$output .= '<div class="echlp_load_more_btn" data-maxpage="'.$max_page.'" data-ppp="'.$ppp.'" data-currpage="1" data-channel="'.$channel_id.'" data-drtype="'.$currDrType.'" data-specid="'.$spec_id.'" onclick="ECHDrBySpec_load_more_dr()">'.$this->ECHPL_echolang(['Load More', '更多', '更多']).'</div>';
+			$output .= '</div>'; // echlp_load_more_container
+		}
+
+		return $output;
+	} // ECHLP_display_profess_list_by_spec
+
+
+	/******************************** (end)SHORTCODE FUNCTIONS ********************************/
+
+
 
 
 	/************************************
@@ -258,7 +334,7 @@ class Ech_Professionals_List_Public {
 		} else {
 			$html .= $this->ECHPL_echolang(['No result ...' , '沒有結果', '没有结果']);
 		}
-	
+
 		echo json_encode(array('html'=>$html, 'max_page' => $max_page), JSON_UNESCAPED_SLASHES);
 	
 		wp_die();

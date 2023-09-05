@@ -14,19 +14,64 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
+<?php 
+    $plugin_info = new Ech_Professionals_List();
+    $ADMIN_ECHPL_func = new Ech_Professionals_List_Admin($plugin_info->get_plugin_name(), $plugin_info->get_version()); 
+?>
 
 <div class="echPlg_wrap">
     <h1>ECH Professionals List General Settings</h1>
 
     <div class="plg_intro">
         <p> More shortcode attributes and guidelines, visit <a href="#" target="_blank">Github</a>. </p>
+        <p>To display doctor list, use below shortcode</p>
         <div class="shtcode_container">
-            <pre id="sample_shortcode">[ech_pl]</pre>
-            <div id="copyMsg"></div>
-            <button id="copyShortcode">Copy Shortcode</button>
+            <pre id="sample_shortcode1">[ech_pl]</pre>
+            <div id="copyMsg1" class="copyMsg"></div>
+            <button id="copyShortcode1" class="copyShortcode">Copy Shortcode</button>
+        </div>
+
+        <p>To display doctor list by specialty, use below shortcode</p>
+        <div class="shtcode_container">
+            <pre id="sample_shortcode2">[ech_pl_by_spec dr_type='dr' spec_id='31' ppp='3']</pre>
+            <div id="copyMsg2" class="copyMsg"></div>
+            <button id="copyShortcode2" class="copyShortcode">Copy Shortcode</button>
         </div>
     </div>
+
+
+    <div class="spec_info_container">
+        <p>Doctor Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_states()?> )</p>
+        <?php 
+            $DR_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$ADMIN_ECHPL_func->ADMIN_ECHPL_get_pcid('dr');
+            $get_DR_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($DR_full_api);
+            $DR_json_arr = json_decode($get_DR_json, true);
+            $DrArr = $DR_json_arr['result']['result'];
+        ?>
+        <div class="spec_info_list">
+            <?php foreach($DrArr as $dr):?>
+                <div>
+                    <?=$dr['tc_name'] . ' | ' . $dr['en_name'] . ' : ' . $dr['forever_specialty_id']?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <p>Vet Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_states()?> )</p>
+        <?php 
+            $VET_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$ADMIN_ECHPL_func->ADMIN_ECHPL_get_pcid('vet');
+            $get_VET_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($VET_full_api);
+            $VET_json_arr = json_decode($get_VET_json, true);
+            $VetArr = $VET_json_arr['result']['result'];
+        ?>
+        <div class="spec_info_list">
+            <?php foreach($VetArr as $vet):?>
+                <div>
+                    <?=$vet['tc_name'] . ' | ' . $vet['en_name'] . ' : ' . $vet['forever_specialty_id']?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div> <!-- spec_info_container -->
+
 
     <div class="form_container">
         <form method="post" id="ech_pl_settings_form">

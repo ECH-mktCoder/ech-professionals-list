@@ -41,7 +41,7 @@
 
 
     <div class="spec_info_container">
-        <p>Doctor Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_states()?> )</p>
+        <p>Doctor Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_status()?> )</p>
         <?php 
             $DR_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$ADMIN_ECHPL_func->ADMIN_ECHPL_get_pcid('dr');
             $get_DR_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($DR_full_api);
@@ -56,7 +56,7 @@
             <?php endforeach; ?>
         </div>
 
-        <p>Vet Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_states()?> )</p>
+        <p>Vet Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_status()?> )</p>
         <?php 
             $VET_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$ADMIN_ECHPL_func->ADMIN_ECHPL_get_pcid('vet');
             $get_VET_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($VET_full_api);

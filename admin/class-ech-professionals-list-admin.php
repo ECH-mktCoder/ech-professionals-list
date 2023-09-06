@@ -157,7 +157,7 @@ class Ech_Professionals_List_Admin {
 	}
 
 
-	public function ADMIN_ECHPL_get_env_states() {
+	public function ADMIN_ECHPL_get_env_status() {
 		$getApiEnv = get_option( 'ech_pl_apply_api_env' );
 		if ( $getApiEnv == "0") {
 			return 'DEV';

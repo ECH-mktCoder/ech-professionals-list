@@ -1,11 +1,18 @@
+header.entry-header .entry-title {
+    display: none;
+}
+
 .ech_dr_sp_list_all_wrap {
     max-width: 1440px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 190px;
     padding: 0px 10px;
     position: relative;
+}
+
+.ech_dr_sp_list_all_wrap a {
+    text-decoration: none;
 }
 
 .sp_breadcrumb {

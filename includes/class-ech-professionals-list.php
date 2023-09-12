@@ -181,7 +181,7 @@ class Ech_Professionals_List {
 	private function define_public_hooks() {
 
 		$plugin_public = new Ech_Professionals_List_Public( $this->get_plugin_name(), $this->get_version() );
-		$virtual_page_public = new Ech_PL_Virtual_Pages_Public();
+		$virtual_page_public = new Ech_PL_Virtual_Pages_Public($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -202,6 +202,9 @@ class Ech_Professionals_List {
 		$this->loader->add_shortcode( 'ech_pl_by_spec', $plugin_public, 'ECHLP_display_profess_list_by_spec');
 		$this->loader->add_shortcode( 'dr_profile_output', $virtual_page_public, 'dr_profile_output');
 		$this->loader->add_shortcode( 'dr_category_list_output', $virtual_page_public, 'dr_category_list_output');
+
+		// ^^^ Create VP after WordPress has finished loading, but before any headers are sent
+		$this->loader->add_action('init', $virtual_page_public, 'ECHPL_createVP' );
 
 	}
 

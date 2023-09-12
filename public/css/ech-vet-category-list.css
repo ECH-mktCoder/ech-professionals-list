@@ -1,3 +1,15 @@
+
+header.entry-header .entry-title {
+    display: none;
+}
+
+.ech_dr_sp_list_all_wrap a {
+    text-decoration: none;
+}
+
+.ECHDr_back_to_medical_list {
+    text-align: right;
+}
 /************** BREADCRUMB ************/
 .ech_dr_sp_list_all_wrap .sp_breadcrumb {
     display: none;

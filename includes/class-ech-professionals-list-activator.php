@@ -85,34 +85,10 @@ class Ech_Professionals_List_Activator {
             add_option( 'ech_pl_enable_breadcrumb', 0 );
         }
 
-		// Create VP
-        self::createVP('Healthcare Professional Profile', 'professional-profile', '[dr_profile_output]');
-        self::createVP('Healthcare Professional Categories', 'specialty-categories', '[dr_category_list_output]');		
-
 	} //activate
 
 
-    private static function createVP($pageTitle, $pageSlug, $pageShortcode) {
-        if ( current_user_can( 'activate_plugins' ) ) {
-			// Get parent page and get its id
-			$get_parent_page = get_page_by_path('healthcare-professionals');
-	
-			$v_page = array(
-				'post_type' => 'page',
-				'post_title' => $pageTitle,
-				'post_name' => $pageSlug,
-				'post_content' => $pageShortcode,  // shortcode from this plugin
-				'post_status' => 'publish',
-				'post_author' => get_current_user_id(),
-				'post_parent' => $get_parent_page->ID
-			);
-	
-			$vp_id = wp_insert_post($v_page, true);
-	
-		} else {
-			return;
-		}
-    } // createVP
+    
 
 
 

@@ -58,6 +58,20 @@ function deactivate_ech_professionals_list() {
 register_activation_hook( __FILE__, 'activate_ech_professionals_list' );
 register_deactivation_hook( __FILE__, 'deactivate_ech_professionals_list' );
 
+
+
+/****************************************
+ * Create an option "run_init_createVP" once plugin is activated
+ ****************************************/
+function ECHPL_activate_initialize_createVP() {
+	require_once plugin_dir_path( __FILE__ ) . 'public/class-ech-pl-virtual-pages-public.php';
+	Ech_PL_Virtual_Pages_Public::ECHPL_initialize_createVP();
+}
+register_activation_hook( __FILE__, 'ECHPL_activate_initialize_createVP' );
+
+
+
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.

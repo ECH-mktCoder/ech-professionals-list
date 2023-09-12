@@ -1,3 +1,9 @@
+
+header.entry-header .entry-title {
+    display: none;
+}
+
+
 h1.entry-title, .clinics_container {
     display: none !important;
 }
@@ -9,6 +15,10 @@ h1.entry-title, .clinics_container {
 .single_dr_container {
     display: flex;
     margin: 50px 0;
+}
+
+.all_single_dr_wrap a {
+    text-decoration: none;
 }
 
 .single_dr_container .profile_container {

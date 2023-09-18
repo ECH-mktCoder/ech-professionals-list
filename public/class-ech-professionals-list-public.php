@@ -119,12 +119,16 @@ class Ech_Professionals_List_Public {
 		$paraArr = shortcode_atts(array(
 			'ppp' => get_option('ech_pl_ppp'),
 			'channel_id' => 4,
-			'dr_type' => null
+			'dr_type' => null,
+			'spec_id' => null,
+			'brand_id' => null
 		), $atts);
 
 		$ppp = (int)$paraArr['ppp'];
 		$channel_id = (int)$paraArr['channel_id'];
 		$dr_type = strtolower(htmlspecialchars(str_replace(' ', '', $paraArr['dr_type'])));
+		$spec_id = (int)$paraArr['spec_id'];
+		$brand_id = (int)$paraArr['brand_id'];
 		
 		
 		if ( $dr_type != null ) {
@@ -150,7 +154,9 @@ class Ech_Professionals_List_Public {
 		$api_args = array(
 			'page_size'=>$ppp,
 			'channel_id' => $channel_id,
-			'product_category_id' => $currDrType
+			'product_category_id' => $currDrType,
+			'specialty_id' => $spec_id,
+			'brand_id' => $brand_id
 		);
 
 	
@@ -223,27 +229,29 @@ class Ech_Professionals_List_Public {
 
 
 	/**************************************
-	 * Display dr list by spec
+	 * Display dr list by spec by brand
 	 **************************************/
-	public function ECHLP_display_profess_list_by_spec($atts) {
+	public function ECHLP_display_profess_list_by_spec_by_brand($atts) {
 		$paraArr = shortcode_atts(array(
 			'ppp' => get_option('ech_pl_ppp'),
 			'channel_id' => 4,
 			'dr_type' => null,
-			'spec_id' => null
+			'spec_id' => null,
+			'brand_id' => null
 		), $atts);
 
 		$ppp = (int)$paraArr['ppp'];
 		$channel_id = (int)$paraArr['channel_id'];
 		$dr_type = strtolower(htmlspecialchars(str_replace(' ', '', $paraArr['dr_type'])));
 		$spec_id = (int)$paraArr['spec_id'];
+		$brand_id = (int)$paraArr['brand_id'];
 
 
 		if ($dr_type == null) {
 			return '<div class="code_error">shortcode error - dr_type not specified</div>';
 		}
-		if ($spec_id == null) {
-			return '<div class="code_error">shortcode error - spec_id not specified</div>';
+		if ($spec_id == null && $brand_id == null) {
+			return '<div class="code_error">shortcode error - spec_id / brand_id not specified</div>';
 		}
 
 		
@@ -260,7 +268,8 @@ class Ech_Professionals_List_Public {
 			'page_size'=>$ppp,
 			'channel_id' => $channel_id,
 			'product_category_id' => $currDrType,
-			'specialty_id' => $spec_id
+			'specialty_id' => $spec_id,
+			'brand_id' => $brand_id
 		);
 
 		$api_link = $this->ECHPL_gen_profList_api_link($api_args);

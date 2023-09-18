@@ -89,8 +89,9 @@
     flex-wrap: wrap;
 }
 .spec_info_container .spec_info_list div {
-  padding: 5px;
+  padding: 7px 5px;
   width: 24%;
+  border: 1px solid #e5e5e5;
 }
 
   /****** COPY SHORTCODE *****/

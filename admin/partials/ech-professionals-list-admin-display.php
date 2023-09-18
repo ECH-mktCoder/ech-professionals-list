@@ -23,7 +23,7 @@
     <h1>ECH Professionals List General Settings</h1>
 
     <div class="plg_intro">
-        <p> More shortcode attributes and guidelines, visit <a href="#" target="_blank">Github</a>. </p>
+        <p> More shortcode attributes and guidelines, visit <a href="https://github.com/ECH-mktCoder/ech-professionals-list/" target="_blank">Github</a>. </p>
         <p>To display doctor list, use below shortcode</p>
         <div class="shtcode_container">
             <pre id="sample_shortcode1">[ech_pl]</pre>
@@ -67,6 +67,22 @@
             <?php foreach($VetArr as $vet):?>
                 <div>
                     <?=$vet['tc_name'] . ' | ' . $vet['en_name'] . ' : ' . $vet['forever_specialty_id']?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+
+        <p>Brand Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_status()?> )</p>
+        <?php 
+            $BRAND_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/brand_list?get_type=4&channel_id=4&page=1&page_size=100';
+            $get_BRAND_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($BRAND_full_api);
+            $BRAND_json_arr = json_decode($get_BRAND_json, true);
+            $BrandArr = $BRAND_json_arr['result'];
+        ?>
+        <div class="spec_info_list">
+            <?php foreach($BrandArr as $brand):?>
+                <div>
+                    <?=$brand['tc_name'] . ' | ' . $brand['en_name'] . ' : ' . $brand['forever_brand_id']?>
                 </div>
             <?php endforeach; ?>
         </div>

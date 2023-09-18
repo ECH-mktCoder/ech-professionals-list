@@ -15,9 +15,10 @@ To display the professionals list, enter shortcode
 [ech_pl]
 ```
 
-To display the professionals list by specialty ID, enter shortcode
+To display the professionals list by specialty ID / brand ID, enter shortcode
+(without filter section, load more dr will be displayed in the same page)
 ```
-[ech_pl_by_spec dr_type='dr' spec_id='31' ppp='3']
+[ech_pl_by_spec]
 ```
 
 
@@ -29,6 +30,7 @@ ppp (INT) | post per page. Default vaule is `12`
 channel_id (INT) | select article channels between ECH app and website. Default value is `4` (website)
 dr_type (String) | `all` / `vet` / `dr`. Used to control the display of doctors based on their type. This will override the "Display Dr Type" setting on plugin admin page. 
 spec_id (INT) | Specialty ID
+brand_id (INT) | Brand ID
 
 
 ### A guideline for echealthcare.com installation

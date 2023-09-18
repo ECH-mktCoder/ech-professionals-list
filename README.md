@@ -18,7 +18,7 @@ To display the professionals list, enter shortcode
 To display the professionals list by specialty ID / brand ID, enter shortcode
 (without filter section, load more dr will be displayed in the same page)
 ```
-[ech_pl_by_spec]
+[ech_pl_by_spec_by_brand]
 ```
 
 

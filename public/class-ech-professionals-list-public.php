@@ -174,7 +174,7 @@ class Ech_Professionals_List_Public {
 		switch($getDisplayDrType) {
 			case 'vet':
 				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
-				$output .= $this->ECHPL_get_regions();
+				$output .= $this->ECHPL_get_vet_regions();
 				break;
 			
 			case 'dr':
@@ -184,7 +184,7 @@ class Ech_Professionals_List_Public {
 			
 			default: 
 				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
-				$output .= $this->ECHPL_get_regions();
+				$output .= $this->ECHPL_get_vet_regions(); // this will only shown in "Vet"
 				$output .= $this->ECHPL_get_spec($getDisplayDrType);
 		}
 
@@ -352,8 +352,11 @@ class Ech_Professionals_List_Public {
 
 
 	/***=========================== FILTERS ===========================***/
-	public function ECHPL_get_regions() {
-		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_location_list?region_key=香港特别行政区';
+	public function ECHPL_get_vet_regions() {
+
+		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
+
+		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_therapist_location_list?region_key=香港特别行政区&channel_id=4&product_category_id=' . $vetTypeID;
 		$get_regions_json = $this->ECHPL_curl_json($full_api);
 		$json_arr = json_decode($get_regions_json, true);
 

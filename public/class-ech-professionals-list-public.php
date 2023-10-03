@@ -720,11 +720,26 @@ class Ech_Professionals_List_Public {
 		}
 		/***** (END) SPECIALTY *****/
 
+		/***** Check Name  *****/
+		$en_name = [
+			1 => $dr['en_salutation'] ." ". $dr['en_name'],
+			2 => $dr['en_name'].$dr['en_salutation'],
+		];
+		$tc_name = [
+			1 => $dr['tc_salutation'] ." ". $dr['tc_name'],
+			2 => $dr['tc_name'].$dr['tc_salutation'],
+		];
+		$cn_name = [
+			1 => $dr['cn_salutation'] ." ". $dr['cn_name'],
+			2 => $dr['cn_name'].$dr['cn_salutation'],
+		];
+		/***** (END)Check Name  *****/
 
 		$html .= '<div class="single_dr_card">';
 		
 			$html .= '<div class="dr_avatar"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'"><img src="'.$avatar.'" /></a></div>';
-			$html .= '<div class="dr_name"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'">'.$this->ECHPL_echolang([ $dr['en_salutation'].' '.$dr['en_name'], $dr['tc_name'].$dr['tc_salutation'],  $dr['cn_name'].$dr['cn_salutation']]).'</a></div>';
+			// $html .= '<div class="dr_name"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'">'.$this->ECHPL_echolang([ $dr['en_salutation'].' '.$dr['en_name'], $dr['tc_name'].$dr['tc_salutation'],  $dr['cn_name'].$dr['cn_salutation']]).'</a></div>';
+			$html .= '<div class="dr_name"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'">'.$this->ECHPL_echolang([$en_name[$dr['en_is_pre']], $tc_name[$dr['tc_is_pre']], $cn_name[$dr['cn_is_pre']]]).'</a></div>';
 			$html .= '<div class="specialty"><strong>'.$this->ECHPL_echolang(['Specialist','專科','专科']).': </strong>'.$this->ECHPL_echolang([$this->ECHPL_apply_comma_from_array($spArrEn), $this->ECHPL_apply_comma_from_array($spArrZH), $this->ECHPL_apply_comma_from_array($spArrSC)]).'</div>';
 			
 		$html .= '</div>'; //single_dr_card

@@ -50,6 +50,19 @@ foreach ($json_arr['personnel']['specialty'] as $specArr) {
     }
 }
 
+$en_name = [
+    1 => $json_arr['personnel']['en_salutation'] ." ". $json_arr['personnel']['en_name'],
+    2 => $json_arr['personnel']['en_name'].$json_arr['personnel']['en_salutation'],
+];
+$tc_name = [
+    1 => $json_arr['personnel']['tc_salutation'] ." ". $json_arr['personnel']['tc_name'],
+    2 => $json_arr['personnel']['tc_name'].$json_arr['personnel']['tc_salutation'],
+];
+$cn_name = [
+    1 => $json_arr['personnel']['cn_salutation'] ." ". $json_arr['personnel']['cn_name'],
+    2 => $json_arr['personnel']['cn_name'].$json_arr['personnel']['cn_salutation'],
+];
+
 ?>
 
 
@@ -82,7 +95,7 @@ foreach ($json_arr['personnel']['specialty'] as $specArr) {
 
 
         <div class="info_container">
-            <h1 class="dr_name"><?= $plugin_public->ECHPL_echolang([$json_arr['personnel']['en_salutation'] . ' ' . $json_arr['personnel']['en_name'], $json_arr['personnel']['tc_name'] . $json_arr['personnel']['tc_salutation'], $json_arr['personnel']['cn_name'] . $json_arr['personnel']['cn_salutation']]) ?></h1>
+            <h1 class="dr_name"><?= $plugin_public->ECHPL_echolang([$en_name[$json_arr['personnel']['en_is_pre']], $tc_name[$json_arr['personnel']['tc_is_pre']], $cn_name[$json_arr['personnel']['cn_is_pre']]]) ?></h1>
 
 
             <div class="spec_container">

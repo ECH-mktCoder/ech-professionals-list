@@ -82,6 +82,19 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 				}
 			}
 
+			$en_name = [
+				1 => $json_arr['personnel']['en_salutation'] ." ". $json_arr['personnel']['en_name'],
+				2 => $json_arr['personnel']['en_name'].$json_arr['personnel']['en_salutation'],
+			];
+			$tc_name = [
+				1 => $json_arr['personnel']['tc_salutation'] ." ". $json_arr['personnel']['tc_name'],
+				2 => $json_arr['personnel']['tc_name'].$json_arr['personnel']['tc_salutation'],
+			];
+			$cn_name = [
+				1 => $json_arr['personnel']['cn_salutation'] ." ". $json_arr['personnel']['cn_name'],
+				2 => $json_arr['personnel']['cn_name'].$json_arr['personnel']['cn_salutation'],
+			];
+
 			$html = '';
 
 			$html .= '<div class="all_single_dr_wrap">';
@@ -97,7 +110,7 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 				$backToListURLParam = '?dr_type=vet';
 			} */
 
-			$html .= '<div class="ECHDr_back_to_medical_list"><a href="'. site_url() .'/healthcare-professionals/"> < '. parent::ECHPL_echolang(['Back to healthcare professionals', '返回醫護專業人員', '返回医护专业人员']) .'</a></div>';
+			$html .= '<div class="ECHDr_back_to_medical_list"><a href="'. site_url() .'/healthcare-professionals/"> '. parent::ECHPL_echolang(['Back to healthcare professionals', '返回醫護專業人員', '返回医护专业人员']) .'</a></div>';
 
 
 			$html .= '<div class="single_dr_container">';
@@ -110,7 +123,8 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 				
 
 					$html .= '<div class="info_container">';
-						$html .= '<h1 class="dr_name">'. parent::ECHPL_echolang([$json_arr['personnel']['en_salutation'] . ' ' . $json_arr['personnel']['en_name'], $json_arr['personnel']['tc_name'] . $json_arr['personnel']['tc_salutation'], $json_arr['personnel']['cn_name'] . $json_arr['personnel']['cn_salutation']]) .'</h1>';
+						// $html .= '<h1 class="dr_name">'. parent::ECHPL_echolang([$json_arr['personnel']['en_salutation'] . ' ' . $json_arr['personnel']['en_name'], $json_arr['personnel']['tc_name'] . $json_arr['personnel']['tc_salutation'], $json_arr['personnel']['cn_name'] . $json_arr['personnel']['cn_salutation']]) .'</h1>';
+						$html .= '<h1 class="dr_name">'. parent::ECHPL_echolang([$en_name[$json_arr['personnel']['en_is_pre']], $tc_name[$json_arr['personnel']['tc_is_pre']], $cn_name[$json_arr['personnel']['cn_is_pre']]]) .'</h1>';
 						
 						$html .= '<div class="spec_container">';
 							$specArrEN = array();
@@ -205,7 +219,7 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 			}
 			$html .= '<div class="echdr_page_anchor"></div>';
 			
-			$html .= '<div class="ECHDr_back_to_medical_list"><a href="'.site_url().'/healthcare-professionals/"> < '. parent::ECHPL_echolang(['Back to healthcare professionals', '返回醫護專業人員', '返回医护专业人员']) .'</a></div>';
+			$html .= '<div class="ECHDr_back_to_medical_list"><a href="'.site_url().'/healthcare-professionals/"> '. parent::ECHPL_echolang(['Back to healthcare professionals', '返回醫護專業人員', '返回医护专业人员']) .'</a></div>';
 			
 			$html .= '<div class="ECHDr_search_title">';
 				$html .= ' <p><span>'. parent::ECHPL_echolang(['Specialist','專科','专科']).': </span>'.$sp_name.' </p>';

@@ -165,12 +165,14 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 								$addressArrEN = json_decode($shops['en_address'], true);
 								$addressArrZH = json_decode($shops['tc_address'], true);
 								$addressArrSC = json_decode($shops['cn_address'], true);
-							}
-							$html .= '<div class="single_clinic">';
-								$html .= ' <div class="clinic_name">'.parent::ECHPL_echolang([$shops['en_name'], $shops['tc_name'], $shops['cn_name']]) .'</div>';
+								
+								$html .= '<div class="single_clinic">';
+									$html .= ' <div class="clinic_name">'.parent::ECHPL_echolang([$shops['en_name'], $shops['tc_name'], $shops['cn_name']]) .'</div>';
 
-								$html .= '<div class="location">'. parent::ECHPL_echolang([parent::ECHPL_clinic_locations($addressArrEN), parent::ECHPL_clinic_locations($addressArrZH), parent::ECHPL_clinic_locations($addressArrSC)]) .'</div>';								
-							$html .= '</div>'; // .single_clinic
+									$html .= '<div class="location">'. parent::ECHPL_echolang([parent::ECHPL_clinic_locations($addressArrEN), parent::ECHPL_clinic_locations($addressArrZH), parent::ECHPL_clinic_locations($addressArrSC)]) .'</div>';								
+								$html .= '</div>'; // .single_clinic
+							}
+							
 						$html .= '</div>'; // .clinics_container
 
 

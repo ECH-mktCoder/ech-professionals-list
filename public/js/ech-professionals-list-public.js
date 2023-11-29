@@ -31,18 +31,20 @@
 		// Change specialty options when clicked dr type
 		$('.ech_dr_filter_container .filter_drType').on('change', function(){
 			var typeID = $(this).val();
+			let drType = $('.ech_dr_filter_container .filter_drType option:selected').data('drtype');
+
 			ECHDr_updateSpecOptions(typeID);
 			// clear checked regions 
 			$('.filter_regions_container input[name="region"]').removeAttr('checked');
 
-			switch(typeID) {
-				case '30001': // dr
-					$('.ech_dr_filter_container .filter_regions_container').css('display','none');
-					$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
-					break;
-				default: 
+			switch(drType) {
+				case 'vet': // vet
 					$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block');
 					$('.ech_dr_filter_container .filter_spec_container').css('display','none');
+					break;
+				default: 
+					$('.ech_dr_filter_container .filter_regions_container').css('display','none');
+					$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
 			}
 		});
 		/**** (end) Filters display conditions on Doctors / Vet selection *****/

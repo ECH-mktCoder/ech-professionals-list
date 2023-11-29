@@ -108,6 +108,11 @@
                 <label>Doctor product_category_id value (Live): </label>
                 <input type="text" name="ech_pl_dr_pcid_live" id="ech_pl_dr_pcid_live" pattern="[0-9]{1,}" value="<?=$getDrPcID_live?>">
             </div>
+            <div class="form_row">
+                <?php $getDentistPcID_live = get_option( 'ech_pl_dentist_pcid_live' ); ?>
+                <label>Dentist Doctor product_category_id value (Live): </label>
+                <input type="text" name="ech_pl_dentist_pcid_live" id="ech_pl_dentist_pcid_live" pattern="[0-9]{1,}" value="<?=$getDentistPcID_live?>">
+            </div>
 
 
 
@@ -121,6 +126,11 @@
                 <?php $getDrPcID_dev = get_option( 'ech_pl_dr_pcid_dev' ); ?>
                 <label>Doctor product_category_id value (Dev): </label>
                 <input type="text" name="ech_pl_dr_pcid_dev" id="ech_pl_dr_pcid_dev" pattern="[0-9]{1,}" value="<?=$getDrPcID_dev?>">
+            </div>
+            <div class="form_row">
+                <?php $getDentistPcID_dev = get_option( 'ech_pl_dentist_pcid_dev' ); ?>
+                <label>Dentist Doctor product_category_id value (Dev): </label>
+                <input type="text" name="ech_pl_dentist_pcid_dev" id="ech_pl_dentist_pcid_dev" pattern="[0-9]{1,}" value="<?=$getDentistPcID_dev?>">
             </div>
 
 
@@ -149,6 +159,7 @@
                     <option value="all" <?= ($getDisplayDrType == "all") ? 'selected' : '' ?>>All</option>
                     <option value="dr" <?= ($getDisplayDrType == "dr") ? 'selected' : '' ?>>Doctors Only</option>
                     <option value="vet" <?= ($getDisplayDrType == "vet") ? 'selected' : '' ?>>Vet Only</option>
+                    <option value="dentist" <?= ($getDisplayDrType == "dentist") ? 'selected' : '' ?>>Dentist Only</option>
                 </select>
             </div>
             <div class="form_row">

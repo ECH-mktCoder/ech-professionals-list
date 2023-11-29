@@ -41,6 +41,7 @@ class Ech_Professionals_List_Activator {
 		// Set vet and doctor product_category_id value
 		$getVetPcID_live = get_option( 'ech_pl_vet_pcid_live' );
 		$getDrPcID_live = get_option( 'ech_pl_dr_pcid_live' );
+		$getDentistPcID_live = get_option( 'ech_pl_dentist_pcid_live' );
 
 		if(empty($getVetPcID_live) || !$getVetPcID_live ) {
 			add_option( 'ech_pl_vet_pcid_live', '30436' );
@@ -48,29 +49,35 @@ class Ech_Professionals_List_Activator {
 		if(empty($getDrPcID_live) || !$getDrPcID_live ) {
 			add_option( 'ech_pl_dr_pcid_live', '30001' );
 		}
-
+		if(empty($getDentistPcID_live) || !$getDentistPcID_live ) {
+			add_option( 'ech_pl_dentist_pcid_live', '30565' );
+		}
 
 		$getVetPcID_dev = get_option( 'ech_pl_vet_pcid_dev' );
 		$getDrPcID_dev = get_option( 'ech_pl_dr_pcid_dev' );
+		$getDentistPcID_dev = get_option( 'ech_pl_dentist_pcid_dev' );
 		if(empty($getVetPcID_dev) || !$getVetPcID_dev ) {
 			add_option( 'ech_pl_vet_pcid_dev', '30558' );
 		}
 		if(empty($getDrPcID_dev) || !$getDrPcID_dev ) {
 			add_option( 'ech_pl_dr_pcid_dev', '30001' );
 		}
+		if(empty($getDentistPcID_dev) || !$getDentistPcID_dev ) {
+			add_option( 'ech_pl_dentist_pcid_dev', '30005' );
+		}
 
-		// controller of display all types of dr / only dr / only vet
+		// controller of display all types of dr / only dr / only vet / dentist vet
 		$getDisplayDrType = get_option( 'ech_pl_display_dr_type' );
 		if(empty($getDisplayDrType) || !$getDisplayDrType ) {
-            add_option( 'ech_pl_display_dr_type', 'all' );
-        }
+      add_option( 'ech_pl_display_dr_type', 'all' );
+    }
 
 
-        // set post per page to 12
-        $getPPP = get_option( 'ech_pl_ppp' );
-        if(empty($getPPP) || !$getPPP ) {
-            add_option( 'ech_pl_ppp', 12 );
-        }
+    // set post per page to 12
+    $getPPP = get_option( 'ech_pl_ppp' );
+    if(empty($getPPP) || !$getPPP ) {
+        add_option( 'ech_pl_ppp', 12 );
+    }
 
 		// apply which css files, default is ECH website style
 		$getStyle = get_option('ech_pl_get_style');

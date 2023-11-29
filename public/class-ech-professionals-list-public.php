@@ -143,6 +143,9 @@ class Ech_Professionals_List_Public {
 			case 'vet':
 				$currDrType = $this->ECHPL_get_dr_type_id('Vet');
 				break;
+			case 'dentist':
+				$currDrType = $this->ECHPL_get_dr_type_id('Dentist');
+				break;
 
 			default: // display all
 				$currDrType = $this->ECHPL_get_dr_type_id('Doctor');
@@ -175,6 +178,11 @@ class Ech_Professionals_List_Public {
 			case 'vet':
 				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
 				$output .= $this->ECHPL_get_vet_regions();
+				break;
+
+			case 'dentist':
+				$output .= $this->ECPL_get_dr_type($getDisplayDrType);
+				$output .= $this->ECHPL_get_spec($getDisplayDrType);
 				break;
 			
 			case 'dr':
@@ -258,6 +266,9 @@ class Ech_Professionals_List_Public {
 		switch($dr_type) {
 			case 'vet':
 				$currDrType = $this->ECHPL_get_dr_type_id('Vet');
+				break;
+			case 'dentist':
+				$currDrType = $this->ECHPL_get_dr_type_id('Dentist');
 				break;
 
 			default: // display all
@@ -353,7 +364,6 @@ class Ech_Professionals_List_Public {
 
 	/***=========================== FILTERS ===========================***/
 	public function ECHPL_get_vet_regions() {
-
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
 
 		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_therapist_location_list?region_key=香港特别行政区&channel_id=4&product_category_id=' . $vetTypeID;
@@ -363,7 +373,7 @@ class Ech_Professionals_List_Public {
 
 		$html = '';
 
-		$html .= '<div class="filter_regions_container">';
+		$html .= '<div class="filter_regions_container" data-drtype="vet">';
 			$html .= '<div class="echdr_filter_dropdown_checkbox">';
 				$html .= '<lable class="anchor">'.$this->ECHPL_echolang([ 'Select Region', '選擇地區', '选择地区']).'</lable>';
 				$html .= '<ul class="echdr_dropdown_checkbox_list">';
@@ -378,15 +388,18 @@ class Ech_Professionals_List_Public {
 		return $html;
 	}
 
-
 	public function ECHPL_get_spec($getDisplayDrType) {
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
+		$dentistTypeID = $this->ECHPL_get_dr_type_id('Dentist');
 
 
 		switch($getDisplayDrType) {
 			case 'vet':
 				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$vetTypeID;
+				break;
+			case 'dentist':
+				$full_api = $this->ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$dentistTypeID;
 				break;
 
 			default: // display all
@@ -415,6 +428,7 @@ class Ech_Professionals_List_Public {
 	public function ECPL_get_dr_type($getDisplayDrType){
 		$drTypeID = $this->ECHPL_get_dr_type_id('Doctor');
 		$vetTypeID = $this->ECHPL_get_dr_type_id('Vet');
+		$dentistTypeID = $this->ECHPL_get_dr_type_id('Dentist');
 
 		
 		$html = '';
@@ -424,7 +438,9 @@ class Ech_Professionals_List_Public {
 			case 'vet':
 				$html .= '<input type="hidden" value="'.$vetTypeID.'" class="filter_drType" />';
 				break;
-
+			case 'dentist':
+				$html .= '<input type="hidden" value="'.$dentistTypeID.'" class="filter_drType" />';
+				break;
 			case 'dr':
 				$html .= '<input type="hidden" value="'.$drTypeID.'" class="filter_drType" />';
 				break;
@@ -432,17 +448,22 @@ class Ech_Professionals_List_Public {
 			default: // display all
 				$selectedDr = false;
 				$selectedVet = false;
+				$selectedDentist = false;
 				switch($getDisplayDrType) {
 					case 'vet':
 						$selectedVet = true;
+						break;
+					case 'dentist':
+						$selectedDentist = true;
 						break;
 					default: 
 						$selectedDr = true;
 				}
 				
 				$html .= '<select name="dr_type" class="filter_drType">';
-					$html .= '<option value="'.$drTypeID.'" '. ($selectedDr ? 'selected': '') .'>'.$this->ECHPL_echolang(['Doctor', '醫生', '医生']).'</option>';
-					$html .= '<option value="'.$vetTypeID.'" '. ($selectedVet ? 'selected': '') .'>'.$this->ECHPL_echolang(['Vet', '獸醫', '兽医']).'</option>';			
+					$html .= '<option data-drtype="dr" value="'.$drTypeID.'" '. ($selectedDr ? 'selected': '') .'>'.$this->ECHPL_echolang(['Doctor', '醫生', '医生']).'</option>';
+					$html .= '<option data-drtype="dentist" value="'.$dentistTypeID.'" '. ($selectedDentist ? 'selected': '') .'>'.$this->ECHPL_echolang(['Dentist', '牙醫', '牙医']).'</option>';			
+					$html .= '<option data-drtype="vet" value="'.$vetTypeID.'" '. ($selectedVet ? 'selected': '') .'>'.$this->ECHPL_echolang(['Vet', '獸醫', '兽医']).'</option>';			
 				$html .= '</select>';
 				
 		}
@@ -540,7 +561,7 @@ class Ech_Professionals_List_Public {
 		$get_platformID_json = $this->ECHPL_curl_json($full_api);
 		$json_arr = json_decode($get_platformID_json, true);
 	
-		$platformID = $json_arr['result']['result']['platform_id'];
+		$platformID = $json_arr['result']['result'][0]['platform_id'];
 		return $platformID;
 	}
 
@@ -616,7 +637,7 @@ class Ech_Professionals_List_Public {
 	}
 
 	public function ECHPL_gen_single_dr_api_link(array $args){
-		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/basic_doctor??platform_id='.$this->ECHPL_get_API_platformID();
+		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/basic_doctor?platform_id='.$this->ECHPL_get_API_platformID();
 	
 		if(!empty($args['therapistid'])) {
 			$full_api .= '&';
@@ -669,9 +690,11 @@ class Ech_Professionals_List_Public {
 
 		$getVetPcID_live = get_option( 'ech_pl_vet_pcid_live' );
 		$getDrPcID_live = get_option( 'ech_pl_dr_pcid_live' );
+		$getDentistPcID_live = get_option( 'ech_pl_dentist_pcid_live' );
 
 		$getVetPcID_dev = get_option( 'ech_pl_vet_pcid_dev' );
 		$getDrPcID_dev = get_option( 'ech_pl_dr_pcid_dev' );
+		$getDentistPcID_dev = get_option( 'ech_pl_dentist_pcid_dev' );
 
 
 		if ( $getApiEnv == "0") {
@@ -679,6 +702,9 @@ class Ech_Professionals_List_Public {
 			switch(strtolower($type_name)) {
 				case 'vet':
 					$prodCateID = $getVetPcID_dev;
+					break;
+				case 'dentist':
+					$prodCateID = $getDentistPcID_dev;
 					break;
 				default: // doctor
 					$prodCateID = $getDrPcID_dev;
@@ -688,6 +714,9 @@ class Ech_Professionals_List_Public {
 			switch(strtolower($type_name)) {
 				case 'vet':
 					$prodCateID = $getVetPcID_live;
+					break;
+				case 'dentist':
+					$prodCateID = $getDentistPcID_live;
 					break;
 				default: // doctor
 					$prodCateID = $getDrPcID_live;

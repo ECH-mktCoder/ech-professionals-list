@@ -73,7 +73,9 @@ header.entry-header .entry-title {
     font-size: 25px;
     line-height: 1.2em;
 }
-
+.sub_title span{
+    font-size: 18px;
+}
 
 .profile_container img {
     width: 100%;
@@ -124,21 +126,20 @@ header.entry-header .entry-title {
     margin-top: 30px;
 }
 
-
-
-.clinics_container {
+.clinics_container,.hospitals_container, .schedule_container{
     margin-top: 30px;
 }
 
-.single_clinic {
+.single_clinic{
     margin-top: 20px;
 }
 
-.single_clinic .clinic_name {
+.single_clinic .clinic_name{
     font-weight: 600;
 }
-
-
+.hospitals_container .sub_title,.schedule_container .sub_title {
+    margin: 20px 0;
+}
 
 @media (max-width: 1024px) {
     .all_single_dr_wrap {
@@ -154,6 +155,10 @@ header.entry-header .entry-title {
 
     .sub_title {
         font-size: 20px;
+    }
+
+    .sub_title span{
+        font-size: 15px;
     }
 
 }

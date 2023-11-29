@@ -109,8 +109,10 @@ class Ech_Professionals_List_Admin {
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_ppp');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_vet_pcid_dev');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_dr_pcid_dev');
+		register_setting( 'ech_pl_gen_settings', 'ech_pl_dentist_pcid_dev');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_vet_pcid_live');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_dr_pcid_live');
+		register_setting( 'ech_pl_gen_settings', 'ech_pl_dentist_pcid_live');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_display_dr_type');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_get_style');
 		register_setting( 'ech_pl_gen_settings', 'ech_pl_enable_breadcrumb');
@@ -124,14 +126,19 @@ class Ech_Professionals_List_Admin {
 		if ($getApiEnv == "0") {
 			$vet_pcid = get_option( 'ech_pl_vet_pcid_dev' );
 			$dr_pcid = get_option( 'ech_pl_dr_pcid_dev' );
+			$dentist_pcid = get_option( 'ech_pl_dentist_pcid_dev' );
 		} else {
 			$vet_pcid = get_option( 'ech_pl_vet_pcid_live' );
 			$dr_pcid = get_option( 'ech_pl_dr_pcid_live' );
+			$dentist_pcid = get_option( 'ech_pl_dentist_pcid_live' );
 		}
 
 		switch($type) {
 			case 'vet': 
 				return $vet_pcid;
+				break;
+			case 'dentist': 
+				return $dentist_pcid;
 				break;
 			default:
 				return $dr_pcid;

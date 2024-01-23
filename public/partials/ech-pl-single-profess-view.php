@@ -87,7 +87,7 @@ $cn_name = [
     <div class="single_dr_container">
         <div class="profile_container">
             <img src="<?= $json_arr['personnel']['avatar'] ?>" alt="">
-            <?php if ($json_arr['personnel']['available_to_book'] == 1) : ?>
+            <?php if ($json_arr['personnel']['available_to_book'] == 1 && !empty($json_arr['personnel']['doctor_whats_app_link'])) : ?>
                 <div class="dr_booking"><a href="<?= $json_arr['personnel']['doctor_whats_app_link'] ?>" target="_blank"><?= $plugin_public->ECHPL_echolang(['Book an Appointment', '預約醫生', '预约医生']) ?></a></div>
             <?php endif; ?>
         </div> <!-- profile_container -->

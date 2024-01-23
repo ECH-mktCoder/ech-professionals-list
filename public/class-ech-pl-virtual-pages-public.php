@@ -116,7 +116,7 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 			$html .= '<div class="single_dr_container">';
 				$html .= '<div class="profile_container">';
 					$html .= '<img src="'. $json_arr['personnel']['avatar'] .'" alt="'.parent::ECHPL_echolang([$json_arr['personnel']['en_salutation'] . ' ' . $json_arr['personnel']['en_name'], $json_arr['personnel']['tc_name'] . $json_arr['personnel']['tc_salutation'], $json_arr['personnel']['cn_name'] . $json_arr['personnel']['cn_salutation']]).'">';
-					if ($json_arr['personnel']['available_to_book'] == 1) {
+					if ($json_arr['personnel']['available_to_book'] == 1 && !empty($json_arr['personnel']['doctor_whats_app_link'])) {
 						$html .= '<div class="dr_booking"><a href="'. $json_arr['personnel']['doctor_whats_app_link'] .'" target="_blank">'.parent::ECHPL_echolang(['Book an Appointment', '預約醫生', '预约医生']) .'</a></div>';
 					}
 					$html .= '</div>'; // .profile_container

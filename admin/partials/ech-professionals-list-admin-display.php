@@ -72,6 +72,22 @@
         </div>
 
 
+        <p>Dentist Specialties Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_status()?> )</p>
+        <?php 
+            $DENTIST_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/get_specialty_list?get_type=4&channel_id=4&product_category_id='.$ADMIN_ECHPL_func->ADMIN_ECHPL_get_pcid('dentist');
+            $get_DENTIST_json = $ADMIN_ECHPL_func->ADMIN_ECHPL_curl_json($DENTIST_full_api);
+            $DENTIST_json_arr = json_decode($get_DENTIST_json, true);
+            $DentistArr = $DENTIST_json_arr['result']['result'];
+        ?>
+        <div class="spec_info_list">
+            <?php foreach($DentistArr as $dentist):?>
+                <div>
+                    <?=$dentist['tc_name'] . ' | ' . $dentist['en_name'] . ' : ' . $dentist['forever_specialty_id']?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+
         <p>Brand Name & ID ( <?=$ADMIN_ECHPL_func->ADMIN_ECHPL_get_env_status()?> )</p>
         <?php 
             $BRAND_full_api = $ADMIN_ECHPL_func->ADMIN_ECHPL_get_api_domain() . '/v1/api/brand_list?get_type=4&channel_id=4&page=1&page_size=100';

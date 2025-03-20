@@ -15,14 +15,22 @@
 		/**** Filters display conditions on Doctors / Vet selection *****/
 		/*********
 		 * Doctor selection : type & doctor spec filters will be shown
+		 * Dentist selection: dentist spec filters(only one spec) and filter button will be hidden
 		 * Vet selection: type & vet region filters will be shown
 		 *********/
 		var initDrTypeID = $('.ech_dr_filter_container .filter_drType').val();
 		switch(initDrTypeID) {
-			case '30001': // dr
+			case '30001': // dr ID (dev & live)
 				$('.ech_dr_filter_container .filter_regions_container').css('display','none');
 				$('.ech_dr_filter_container .filter_spec_container').css('display','inline-block');
 				break;
+			
+			case '30565': // dentist ID (live)
+			case '30005': // dentist ID (dev)			
+				$('.ech_dr_filter_container .filter_spec_container').css('display','none');
+				$('.ech_dr_filter_container .dr_filter_btn_container').css('display','none');
+				break;
+
 			default: 
 				$('.ech_dr_filter_container .filter_regions_container').css('display','inline-block');
 				$('.ech_dr_filter_container .filter_spec_container').css('display','none');

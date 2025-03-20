@@ -560,8 +560,11 @@ class Ech_Professionals_List_Public {
 		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/publishPlatformListByName?platform_name=BLOG';
 		$get_platformID_json = $this->ECHPL_curl_json($full_api);
 		$json_arr = json_decode($get_platformID_json, true);
-	
-		$platformID = $json_arr['result']['result'][0]['platform_id'];
+		$platformID = [];
+
+		if (!empty($json_arr['result']['result'])) {			
+			$platformID = $json_arr['result']['result'][0]['platform_id'];
+		}
 		return $platformID;
 	}
 
@@ -571,8 +574,12 @@ class Ech_Professionals_List_Public {
 	 ****************************************/
 	public function ECHPL_gen_profList_api_link(array $args) {
 		
-
-		$full_api = $this->ECHPL_get_api_domain() . '/v1/api/basic_doctor_list?platform_id='.$this->ECHPL_get_API_platformID();
+		$get_platformID = $this->ECHPL_get_API_platformID();
+		if (!empty($get_platformID)) {
+			$full_api = $this->ECHPL_get_api_domain() . '/v1/api/basic_doctor_list?platform_id='.$this->ECHPL_get_API_platformID();
+		} else {
+			$full_api = $this->ECHPL_get_api_domain() . '/v1/api/basic_doctor_list?platform_id=9';
+		}
 
 		if(!empty($args['page'])) {
 			$full_api .= '&';
@@ -769,7 +776,29 @@ class Ech_Professionals_List_Public {
 			$html .= '<div class="dr_avatar"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'"><img src="'.$avatar.'" /></a></div>';
 			// $html .= '<div class="dr_name"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'">'.$this->ECHPL_echolang([ $dr['en_salutation'].' '.$dr['en_name'], $dr['tc_name'].$dr['tc_salutation'],  $dr['cn_name'].$dr['cn_salutation']]).'</a></div>';
 			$html .= '<div class="dr_name"><a href="'.site_url().'/healthcare-professionals/professional-profile/'.$dr['therapistid'].'">'.$this->ECHPL_echolang([$en_name[$dr['en_is_pre']], $tc_name[$dr['tc_is_pre']], $cn_name[$dr['cn_is_pre']]]).'</a></div>';
-			$html .= '<div class="specialty"><strong>'.$this->ECHPL_echolang(['Specialist','專科','专科']).': </strong>'.$this->ECHPL_echolang([$this->ECHPL_apply_comma_from_array($spArrEn), $this->ECHPL_apply_comma_from_array($spArrZH), $this->ECHPL_apply_comma_from_array($spArrSC)]).'</div>';
+
+
+
+			/**********************
+			 * IF VET, show 學歷. ELSE show specialist
+			 * 全科獸醫 | Vet : 282
+			 * 專科獸醫 | Specialist Veterinary : 195
+			 **********************/
+			if ($dr['specialty_list'][0]['specialty_id'] == 282 || $dr['specialty_list'][0]['specialty_id'] == 195) {
+				
+				/***** EDU *****/
+				$eduEn = str_replace("\n", ", ", $dr['cn_profile']);
+				$eduZH = str_replace("\n", ", ", $dr['tc_profile']);;
+				$eduSC = str_replace("\n", ", ", $dr['en_profile']);;				
+				/***** (END) EDU *****/
+				
+				$html .= '<div class="edu">'.$this->ECHPL_echolang([$eduEn, $eduZH, $eduSC]).'</div>';
+			} else {
+
+				$html .= '<div class="specialty"><strong>'.$this->ECHPL_echolang(['Specialist','專科','专科']).': </strong>'.$this->ECHPL_echolang([$this->ECHPL_apply_comma_from_array($spArrEn), $this->ECHPL_apply_comma_from_array($spArrZH), $this->ECHPL_apply_comma_from_array($spArrSC)]).'</div>';
+			}
+
+
 			
 		$html .= '</div>'; //single_dr_card
 

@@ -44,6 +44,24 @@ h1.entry-title, .clinics_container {
     margin-bottom: 20px;
 }
 
+
+.single_dr_container .hospitals_container {
+    margin-top: 20px;
+}
+.single_dr_container .hospitals_container .sub_title{
+    font-weight: bold;
+}
+
+
+.single_dr_container .schedule_container {
+    margin-top: 20px;
+}
+.single_dr_container .schedule_container .sub_title{
+    font-weight: bold;
+}
+
+
+
 @media(max-width:600px) {
     .single_dr_container {
         flex-wrap: wrap;

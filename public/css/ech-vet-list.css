@@ -205,6 +205,10 @@
 .all_drs_container .single_dr_card .dr_name {
     position: relative;
 }
+.all_drs_container .single_dr_card .specialty,
+.all_drs_container .single_dr_card .specialty a {
+    font-size: 15px;
+}
 .all_drs_container .single_dr_card .dr_name a {
     position: absolute;
     bottom: 0px;
@@ -212,6 +216,13 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.all_drs_container .single_dr_card .edu {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
 
 @media(max-width:768px) {
     .all_drs_container .single_dr_card {

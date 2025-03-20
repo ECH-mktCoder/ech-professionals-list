@@ -175,17 +175,24 @@ class Ech_PL_Virtual_Pages_Public extends Ech_Professionals_List_Public {
 							
 						$html .= '</div>'; // .clinics_container
 
-						$html .= '<div class="hospitals_container">';
-							$html .= '<div class="sub_title">'.parent::ECHPL_echolang(['Related Hospital', '相關醫院', '相关医院']) .'</div>';
-							$html .= '<div class="single_hospital">';
-								$html .= ' <div class="hospital_name">'.parent::ECHPL_echolang([parent::ECHPL_replace_newline($json_arr['personnel']['en_hospital']), parent::ECHPL_replace_newline($json_arr['personnel']['tc_hospital']), parent::ECHPL_replace_newline($json_arr['personnel']['cn_hospital']) ]) .'</div>';
-							$html .= '</div>'; // .single_hospital
-						$html .= '</div>'; // .hospitals_container
 
-						$html .= '<div class="schedule_container">';
-							$html .= '<div class="sub_title">'.parent::ECHPL_echolang(['Schedule', '診症時間', '诊症时间']) .'</div>';
-							$html .= ' <div class="schedule_name">'.parent::ECHPL_echolang([parent::ECHPL_replace_newline($json_arr['personnel']['en_schedule']), parent::ECHPL_replace_newline($json_arr['personnel']['tc_schedule']), parent::ECHPL_replace_newline($json_arr['personnel']['cn_schedule']) ]) .'</div>';
-						$html .= '</div>'; // .schedule_container
+						if ($json_arr['personnel']['tc_hospital'] != null) {
+							$html .= '<div class="hospitals_container">';
+								$html .= '<div class="sub_title">'.parent::ECHPL_echolang(['Related Hospital', '相關醫院', '相关医院']) .'</div>';
+								$html .= '<div class="single_hospital">';
+									$html .= ' <div class="hospital_name">'.parent::ECHPL_echolang([parent::ECHPL_replace_newline($json_arr['personnel']['en_hospital']), parent::ECHPL_replace_newline($json_arr['personnel']['tc_hospital']), parent::ECHPL_replace_newline($json_arr['personnel']['cn_hospital']) ]) .'</div>';
+								$html .= '</div>'; // .single_hospital
+							$html .= '</div>'; // .hospitals_container
+						}
+						
+
+						if ($json_arr['personnel']['tc_schedule'] != null) {
+							$html .= '<div class="schedule_container">';
+								$html .= '<div class="sub_title">'.parent::ECHPL_echolang(['Schedule', '診症時間', '诊症时间']) .'</div>';
+								$html .= ' <div class="schedule_name">'.parent::ECHPL_echolang([parent::ECHPL_replace_newline($json_arr['personnel']['en_schedule']), parent::ECHPL_replace_newline($json_arr['personnel']['tc_schedule']), parent::ECHPL_replace_newline($json_arr['personnel']['cn_schedule']) ]) .'</div>';
+							$html .= '</div>'; // .schedule_container
+						}
+						
 
 					$html .= '</div>'; // .info_container
 
